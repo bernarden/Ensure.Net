@@ -11,5 +11,8 @@
     <Description>Ensure null check library for .NET.</Description>
     <Copyright>Copyright (c) 2017</Copyright>
   </PropertyGroup>
-
+  
+  <PropertyGroup Condition="'$(TargetFramework)'=='net20'">
+    <DefineConstants>NET20</DefineConstants>
+  </PropertyGroup>
 </Project>
