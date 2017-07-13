@@ -1,11 +1,13 @@
 using System;
-using Xunit;
+using Ensure.Net.Tests.Helpers;
 
 namespace Ensure.Net.Tests
 {
+#if !NET20
+    [TestFixture]
     public class EnsureTest
     {
-        [Fact]
+        [Test]
         public void NotNullCheckShouldThrowExceptionIfVariableIsNull()
         {
             // Arrange
@@ -18,4 +20,5 @@ namespace Ensure.Net.Tests
             Assert.Equal("'variableName' cannot be null.", ex.Message);
         }
     }
+#endif
 }
