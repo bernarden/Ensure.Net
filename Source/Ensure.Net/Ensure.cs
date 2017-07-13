@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 #if !NET20
 using System.Linq.Expressions;
 #endif
@@ -8,6 +9,7 @@ namespace Ensure.Net
     public static class Ensure
     {
 #if !NET20
+        [DebuggerStepThrough]
         public static IEnsurable<T> NotNull<T>(Expression<Func<T>> valueExpression) where T : class
         {
             if (valueExpression == null)
