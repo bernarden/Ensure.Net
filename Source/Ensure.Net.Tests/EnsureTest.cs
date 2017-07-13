@@ -8,7 +8,7 @@ namespace Ensure.Net.Tests
     public class EnsureTest
     {
         [Test]
-        public void NotNullCheckShouldThrowExceptionIfVariableIsNull()
+        public void NotNullExpressionCheckShouldThrowExceptionIfVariableIsNull()
         {
             // Arrange
             string variableName = null;
