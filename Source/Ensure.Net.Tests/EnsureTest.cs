@@ -3,10 +3,10 @@ using Ensure.Net.Tests.Helpers;
 
 namespace Ensure.Net.Tests
 {
-#if !NET20
     [TestFixture]
     public class EnsureTest
     {
+#if !NET20 
         [Test]
         public void NotNullCheckShouldThrowExceptionIfVariableIsNull()
         {
@@ -19,6 +19,6 @@ namespace Ensure.Net.Tests
             // Act
             Assert.Equal("'variableName' cannot be null.", ex.Message);
         }
-    }
 #endif
+    }
 }

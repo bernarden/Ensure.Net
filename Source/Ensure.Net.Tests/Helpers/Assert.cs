@@ -6,7 +6,7 @@ namespace Ensure.Net.Tests.Helpers
     {
         public static Exception Throws<T>(Func<object> func) where T : Exception
         {
-#if NETSTANDARD
+#if XUnit
             return Xunit.Assert.Throws<T>(func);
 #else
             return NUnit.Framework.Assert.Throws<T>(() => func());
@@ -15,7 +15,7 @@ namespace Ensure.Net.Tests.Helpers
 
         public static void Equal(string value, string expectedValue)
         {
-#if NETSTANDARD
+#if XUnit
             Xunit.Assert.Equal(value, expectedValue);
 #else
             NUnit.Framework.Assert.AreEqual(expectedValue, value);
