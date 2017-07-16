@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 #if !NET20
 using System.Linq.Expressions;
 #endif
@@ -33,7 +34,7 @@ namespace Ensure.Net
             if (value == null)
             {
                 string message = $"'{variableName}' cannot be null.";
-                throw new ArgumentNullException(message);
+                throw new ArgumentNullException("", message);
             }
             return new Ensurable<T> { Value = value };
         }
@@ -42,11 +43,16 @@ namespace Ensure.Net
         /// Determine whether an object is null, if so throws a ArgumentNullException
         /// </summary>
         /// <param name="value">The object to be checked.</param>
-        public static void NotNull(object value)
+        public static void NotNull(object value, string parameterName)
         {
+            if (string.IsNullOrEmpty(parameterName))
+            {
+                throw new ArgumentException("Variable name cannot be null.");
+            }
+
             if (value == null)
             {
-                throw new ArgumentNullException("Variable cannot be null.");
+                throw new ArgumentNullException("", "Variable cannot be null.");
             }
         }
         /// <summary>
@@ -54,14 +60,19 @@ namespace Ensure.Net
         /// Determine whether a string is empty, if so throws an ArgumentException
         /// </summary>
         /// <param name="value">The string variable to be checked.</param>
-        public static void NotNullOrEmpty(string value)
+        public static void NotNullOrEmpty(string value, string parameterName)
         {
-            if (value == null)
+            if (string.IsNullOrEmpty(parameterName))
             {
-                throw new ArgumentNullException("Variable cannot be null.");
+                throw new ArgumentException("Variable name cannot be null.");
             }
 
-            if (string.IsNullOrEmpty(value))
+            if (value == null)
+            {
+                throw new ArgumentNullException("", "Variable cannot be null.");
+            }
+
+            if (value == "")
             {
                 throw new ArgumentException("Variable cannot be an empty string.");
             }
