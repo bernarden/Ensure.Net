@@ -4,49 +4,49 @@
     <TargetFrameworks>net46;net45;net40;net35;net20;netcoreapp1.0</TargetFrameworks>
   </PropertyGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)'=='netcoreapp1.0'">
-    <PackageReference Include="xunit" Version="2.2.0" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
+  <ItemGroup Condition="'$(TargetFramework)'=='netcoreapp1.0' OR '$(TargetFramework)'=='net46'">
+    <PackageReference Include="xunit" Version="2.3.0-beta3-build3705" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.0-beta3-build3705" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)'=='net20' OR '$(TargetFramework)'=='net35' OR '$(TargetFramework)'=='net40' OR '$(TargetFramework)'=='net45' OR '$(TargetFramework)'=='net46'">
+  <ItemGroup Condition="'$(TargetFramework)'=='net20' OR '$(TargetFramework)'=='net35' OR '$(TargetFramework)'=='net40' OR '$(TargetFramework)'=='net45'">
     <PackageReference Include="NUnit" Version="3.7.1" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.7.0" />
   </ItemGroup>
-
+ 
   <ItemGroup>
     <ProjectReference Include="..\Ensure.Net\Ensure.Net.csproj" />
   </ItemGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='net46'">
     <ReferringTargetFrameworkForProjectReferences>.NETFramework,Version=v4.6</ReferringTargetFrameworkForProjectReferences>
-    <DefineConstants>NET46</DefineConstants>
+    <DefineConstants>NET46;XUnit</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='net45'">
     <ReferringTargetFrameworkForProjectReferences>.NETFramework,Version=v4.5</ReferringTargetFrameworkForProjectReferences>
-    <DefineConstants>NET45</DefineConstants>
+    <DefineConstants>NET45;NUnit</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='net40'">
     <ReferringTargetFrameworkForProjectReferences>.NETFramework,Version=v4.0</ReferringTargetFrameworkForProjectReferences>
-    <DefineConstants>NET40</DefineConstants>
+    <DefineConstants>NET40;NUnit</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='net35'">
     <ReferringTargetFrameworkForProjectReferences>.NETFramework,Version=v3.5</ReferringTargetFrameworkForProjectReferences>
-    <DefineConstants>NET35</DefineConstants>
+    <DefineConstants>NET35;NUnit</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='net20'">
     <ReferringTargetFrameworkForProjectReferences>.NETFramework,Version=v2.0</ReferringTargetFrameworkForProjectReferences>
-    <DefineConstants>NET20</DefineConstants>
+    <DefineConstants>NET20;NUnit</DefineConstants>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(TargetFramework)'=='netcoreapp1.0'">
     <ReferringTargetFrameworkForProjectReferences>.NETStandard,Version=v1.0</ReferringTargetFrameworkForProjectReferences>
-    <DefineConstants>NETSTANDARD</DefineConstants>
+    <DefineConstants>NETSTANDARD1_0;XUnit</DefineConstants>
   </PropertyGroup>
 
 </Project>

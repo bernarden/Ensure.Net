@@ -1,7 +1,7 @@
 namespace Ensure.Net.Tests.Helpers
 {
     public class TestFixtureAttribute :
-#if NETSTANDARD 
+#if XUnit
     System.Attribute
 #else
     NUnit.Framework.TestFixtureAttribute

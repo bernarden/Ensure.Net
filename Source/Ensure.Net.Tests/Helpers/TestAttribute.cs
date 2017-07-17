@@ -1,7 +1,7 @@
 namespace Ensure.Net.Tests.Helpers
 {
     public class TestAttribute :
-#if NETSTANDARD
+#if XUnit
     Xunit.FactAttribute
 #else
     NUnit.Framework.TestAttribute
