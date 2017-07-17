@@ -19,7 +19,7 @@ namespace Ensure.Net.Tests
             // Act
             Assert.Equal("'variableName' cannot be null.", ex.Message);
         }
-#endif
+
         [Test]
         public void NotNullCheckShouldThrowArgumentNullExceptionIfVariableIsNull()
         {
@@ -27,7 +27,7 @@ namespace Ensure.Net.Tests
             string variableName = null;
 
             // Assert
-            Exception ex = Assert.Throws<ArgumentNullException>(() => Ensure.NotNull(variableName, nameof(variableName)));
+            Exception ex = Assert.Throws<ArgumentNullException>(() => Ensure.NotNull<string>(variableName, nameof(variableName)));
 
             // Act
             Assert.Equal("Variable cannot be null.", ex.Message);
@@ -38,7 +38,9 @@ namespace Ensure.Net.Tests
         {
             string variableName = "Test";
 
-            Ensure.NotNull(variableName, nameof(variableName));
+            string result = Ensure.NotNull<string>(variableName, nameof(variableName)).Value;
+
+            Assert.Equal(result, variableName);
         }
 
         [Test]
@@ -73,7 +75,10 @@ namespace Ensure.Net.Tests
             // Arrange
             string variableName = "Test";
 
-            Ensure.NotNullOrEmpty(variableName, nameof(variableName));
+            string result= Ensure.NotNullOrEmpty(variableName, nameof(variableName)).Value;
+
+            Assert.Equal(result, variableName);
         }
+#endif
     }
 }

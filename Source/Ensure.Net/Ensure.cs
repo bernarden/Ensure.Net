@@ -43,7 +43,8 @@ namespace Ensure.Net
         /// Determine whether an object is null, if so throws a ArgumentNullException
         /// </summary>
         /// <param name="value">The object to be checked.</param>
-        public static void NotNull(object value, string parameterName)
+        /// <param name="parameterName">The object to be checked.</param>
+        public static IEnsurable<T> NotNull<T>(object value, string parameterName)
         {
             if (string.IsNullOrEmpty(parameterName))
             {
@@ -54,13 +55,17 @@ namespace Ensure.Net
             {
                 throw new ArgumentNullException("", "Variable cannot be null.");
             }
+
+            return new Ensurable<T> { Value = (T)Convert.ChangeType(value, typeof(T)) };
         }
+
         /// <summary>
         /// Determine whether a string is null, if so throws an ArgumentNullException
         /// Determine whether a string is empty, if so throws an ArgumentException
         /// </summary>
         /// <param name="value">The string variable to be checked.</param>
-        public static void NotNullOrEmpty(string value, string parameterName)
+        /// <param name="parameterName">The object to be checked.</param>
+        public static IEnsurable<string> NotNullOrEmpty(string value, string parameterName)
         {
             if (string.IsNullOrEmpty(parameterName))
             {
@@ -76,6 +81,8 @@ namespace Ensure.Net
             {
                 throw new ArgumentException("Variable cannot be an empty string.");
             }
+
+            return new Ensurable<string> { Value = value };
         }
     }
 }
