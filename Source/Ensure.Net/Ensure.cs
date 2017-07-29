@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Reflection;
-#if !NET20
+#if Expressions_Supported
 using System.Linq.Expressions;
 #endif
 
@@ -8,7 +7,7 @@ namespace Ensure.Net
 {
     public static class Ensure
     {
-#if !NET20
+#if Expressions_Supported
         /// <summary>
         /// Determine whether the object is null, if so throws an appropriate exception depending on the input
         /// </summary>

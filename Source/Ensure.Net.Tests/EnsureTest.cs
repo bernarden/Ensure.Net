@@ -6,7 +6,8 @@ namespace Ensure.Net.Tests
     [TestFixture]
     public class EnsureTest
     {
-#if !NET20
+
+#if Expressions_Supported
         [Test]
         public void NotNullExpressionCheckShouldThrowArgumentNullExceptionIfVariableIsNull()
         {
@@ -19,6 +20,7 @@ namespace Ensure.Net.Tests
             // Act
             Assert.Equal("'variableName' cannot be null.", ex.Message);
         }
+#endif
 
         [Test]
         public void NotNullCheckShouldThrowArgumentNullExceptionIfVariableIsNull()
@@ -75,10 +77,9 @@ namespace Ensure.Net.Tests
             // Arrange
             string variableName = "Test";
 
-            string result= Ensure.NotNullOrEmpty(variableName, nameof(variableName)).Value;
+            string result = Ensure.NotNullOrEmpty(variableName, nameof(variableName)).Value;
 
             Assert.Equal(result, variableName);
         }
-#endif
     }
 }
