@@ -1,10 +1,11 @@
-﻿Microsoft Visual Studio Solution File, Format Version 12.00
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.14
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ensure.Net", "Ensure.Net\Ensure.Net.csproj", "{377218F7-5A39-474F-87CF-0FFD803C4B73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ensure.Net.Tests", "Ensure.Net.Tests\Ensure.Net.Tests.csproj", "{B11A3573-F589-4219-B435-2F0B525F52AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ensure.Net.Tests", "Ensure.Net.Tests\Ensure.Net.Tests.csproj", "{B11A3573-F589-4219-B435-2F0B525F52AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
