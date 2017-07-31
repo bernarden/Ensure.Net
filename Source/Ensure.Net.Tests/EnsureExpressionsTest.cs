@@ -14,30 +14,30 @@ namespace Ensure.Net.Tests
             // Arrange
             string variableName = null;
 
-            // Assert
+            // Act
             Exception ex = Assert.Throws<ArgumentNullException>(() => Ensure.NotNull(() => variableName));
 
-            // Act
+            // Assert
             Assert.Equal($"{nameof(variableName)} cannot be null.", ex.Message);
         }
 
         [Test]
         public void NotNullExpressionCheckShouldThrowArgumentNullExceptionIfInputIsNullButIsNotDeclaredAsVariable()
         {
-            // Assert
+            // Act
             Exception ex = Assert.Throws<ArgumentNullException>(() => Ensure.NotNull(() => (string)null));
 
-            // Act
+            // Assert
             Assert.Equal("Variable cannot be null.", ex.Message);
         }
 
         [Test]
         public void NotNullExpressionCheckShouldThrowArgumentExceptionIfExpressionIsNull()
         {
-            // Assert
+            // Act
             Exception ex = Assert.Throws<ArgumentException>(() => Ensure.NotNull((Expression<Func<string>>)null));
 
-            // Act
+            // Assert
             Assert.Equal("Expression cannot be null.", ex.Message);
         }
 
@@ -47,20 +47,20 @@ namespace Ensure.Net.Tests
             // Arrange
             string variableName = "Test";
 
-            // Assert
+            // Act
             IEnsurable<string> ensurable = Ensure.NotNull(() => variableName);
 
-            // Act
+            // Assert
             Assert.Equal(ensurable.Value, variableName);
         }
 
         [Test]
         public void NotNullExpressionCheckShouldThrowArgumentExceptionIfExpressionIsNotMemberExpression()
         {
-            // Assert
+            // Act
             Exception ex = Assert.Throws<ArgumentException>(() => Ensure.NotNull(() => string.Empty + string.Empty));
 
-            // Act
+            // Assert
             Assert.Equal("Expression must be of type MemberExpression.", ex.Message);
         }
 
@@ -70,10 +70,10 @@ namespace Ensure.Net.Tests
             // Arrange
             string variableName = null;
 
-            // Assert
+            // Act
             Exception ex = Assert.Throws<ArgumentNullException>(() => Ensure.NotNullOrEmpty(() => variableName));
 
-            // Act
+            // Assert
             Assert.Equal($"{nameof(variableName)} cannot be null.", ex.Message);
         }
 
@@ -83,50 +83,50 @@ namespace Ensure.Net.Tests
             // Arrange
             string variableName = string.Empty;
 
-            // Assert
+            // Act
             Exception ex = Assert.Throws<ArgumentException>(() => Ensure.NotNullOrEmpty(() => variableName));
 
-            // Act
+            // Assert
             Assert.Equal($"{nameof(variableName)} cannot be an empty string.", ex.Message);
         }
 
         [Test]
         public void NotNullOrEmptyExpressionCheckShouldThrowArgumentNullExceptionIfInputIsNullButIsNotDeclaredAsVariable()
         {
-            // Assert
+            // Act
             Exception ex = Assert.Throws<ArgumentNullException>(() => Ensure.NotNullOrEmpty(() => null));
 
-            // Act
+            // Assert
             Assert.Equal("Variable cannot be null.", ex.Message);
         }
 
         [Test]
         public void NotNullOrEmptyExpressionCheckShouldThrowArgumentExceptionIfInputIsEmptyStringButIsNotDeclaredAsVariable()
         {
-            // Assert
+            // Act
             Exception ex = Assert.Throws<ArgumentException>(() => Ensure.NotNullOrEmpty(() => ""));
 
-            // Act
+            // Assert
             Assert.Equal("Variable cannot be an empty string.", ex.Message);
         }
 
         [Test]
         public void NotNullOrEmptyExpressionCheckShouldThrowArgumentExceptionIfInputIsStringDotEmptyButIsNotDeclaredAsVariable()
         {
-            // Assert
+            // Act
             Exception ex = Assert.Throws<ArgumentException>(() => Ensure.NotNullOrEmpty(() => string.Empty));
 
-            // Act
+            // Assert
             Assert.Equal("Empty cannot be an empty string.", ex.Message);
         }
 
         [Test]
         public void NotNullOrEmptyExpressionCheckShouldThrowArgumentExceptionIfExpressionIsNull()
         {
-            // Assert
+            // Act
             Exception ex = Assert.Throws<ArgumentException>(() => Ensure.NotNullOrEmpty(null));
 
-            // Act
+            // Assert
             Assert.Equal("Expression cannot be null.", ex.Message);
         }
 
@@ -136,20 +136,20 @@ namespace Ensure.Net.Tests
             // Arrange
             string variableName = "Test";
 
-            // Assert
+            // Act
             IEnsurable<string> ensurable = Ensure.NotNullOrEmpty(() => variableName);
 
-            // Act
+            // Assert
             Assert.Equal(ensurable.Value, variableName);
         }
 
         [Test]
         public void NotNullOrEmptyExpressionCheckShouldThrowArgumentExceptionIfExpressionIsNotMemberExpression()
         {
-            // Assert
+            // Act
             Exception ex = Assert.Throws<ArgumentException>(() => Ensure.NotNullOrEmpty(() => string.Empty + string.Empty));
 
-            // Act
+            // Assert
             Assert.Equal("Expression must be of type MemberExpression.", ex.Message);
         }
 
@@ -159,30 +159,30 @@ namespace Ensure.Net.Tests
             // Arrange
             string variableName = null;
 
-            // Assert
+            // Act
             Exception ex = Assert.Throws<ArgumentException>(() => Ensure.NotDefault(() => variableName));
 
-            // Act
+            // Assert
             Assert.Equal($"{nameof(variableName)} cannot be set to default value.", ex.Message);
         }
 
         [Test]
         public void NotDefaultExpressionCheckShouldThrowArgumentNullExceptionIfStringIsNullButIsNotDeclaredAsVariable()
         {
-            // Assert
+            // Act
             Exception ex = Assert.Throws<ArgumentException>(() => Ensure.NotDefault(() => (string)null));
 
-            // Act
+            // Assert
             Assert.Equal("Variable cannot be set to default value.", ex.Message);
         }
 
         [Test]
         public void NotDefaultExpressionCheckShouldThrowArgumentExceptionIfExpressionIsNull()
         {
-            // Assert
+            // Act
             Exception ex = Assert.Throws<ArgumentException>(() => Ensure.NotDefault((Expression<Func<string>>)null));
 
-            // Act
+            // Assert
             Assert.Equal("Expression cannot be null.", ex.Message);
         }
 
@@ -192,20 +192,20 @@ namespace Ensure.Net.Tests
             // Arrange
             string variableName = "Test";
 
-            // Assert
+            // Act
             IEnsurable<string> ensurable = Ensure.NotDefault(() => variableName);
 
-            // Act
+            // Assert
             Assert.Equal(ensurable.Value, variableName);
         }
 
         [Test]
         public void NotDefaultExpressionCheckShouldThrowArgumentExceptionIfExpressionIsNotMemberExpression()
         {
-            // Assert
+            // Act
             Exception ex = Assert.Throws<ArgumentException>(() => Ensure.NotDefault(() => string.Empty + string.Empty));
 
-            // Act
+            // Assert
             Assert.Equal("Expression must be of type MemberExpression.", ex.Message);
         }
     }

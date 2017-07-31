@@ -22,7 +22,7 @@ namespace Ensure.Net.Tests.Helpers
 #endif
         }
 
-        public static void Equal(string value, string expectedValue)
+        public static void Equal(object value, object expectedValue)
         {
 #if XUnit
             Xunit.Assert.Equal(value, expectedValue);
