@@ -31,20 +31,10 @@ namespace Ensure.Net
                 throw new ArgumentException("Expression must be of type MemberExpression.");
             }
 
-            string variableName = memberExpression.Member?.Name;
-            if (string.IsNullOrEmpty(variableName))
-            {
-                variableName = "Variable";
-            }
-
             T value = (T)Expression.Lambda(memberExpression).Compile().DynamicInvoke();
-            if (value == null)
-            {
-                string message = $"{variableName} cannot be null.";
-                throw new ArgumentNullException("", message);
-            }
+            string variableName = string.IsNullOrEmpty(memberExpression.Member.Name) ? "Variable" : memberExpression.Member.Name;
 
-            return new Ensurable<T>(value);
+            return NotNull(value, variableName);
         }
 #endif
         /// <summary>
