@@ -152,6 +152,62 @@ namespace Ensure.Net.Tests
             // Act
             Assert.Equal("Expression must be of type MemberExpression.", ex.Message);
         }
+
+        [Test]
+        public void NotDefaultExpressionCheckShouldThrowArgumentNullExceptionIfVariableIsNull()
+        {
+            // Arrange
+            string variableName = null;
+
+            // Assert
+            Exception ex = Assert.Throws<ArgumentException>(() => Ensure.NotDefault(() => variableName));
+
+            // Act
+            Assert.Equal($"{nameof(variableName)} cannot be set to default value.", ex.Message);
+        }
+
+        [Test]
+        public void NotDefaultExpressionCheckShouldThrowArgumentNullExceptionIfStringIsNullButIsNotDeclaredAsVariable()
+        {
+            // Assert
+            Exception ex = Assert.Throws<ArgumentException>(() => Ensure.NotDefault(() => (string)null));
+
+            // Act
+            Assert.Equal("Variable cannot be set to default value.", ex.Message);
+        }
+
+        [Test]
+        public void NotDefaultExpressionCheckShouldThrowArgumentExceptionIfExpressionIsNull()
+        {
+            // Assert
+            Exception ex = Assert.Throws<ArgumentException>(() => Ensure.NotDefault((Expression<Func<string>>)null));
+
+            // Act
+            Assert.Equal("Expression cannot be null.", ex.Message);
+        }
+
+        [Test]
+        public void NotDefaultExpressionCheckShouldNotThrowExceptionIfVariableIsNotDefault()
+        {
+            // Arrange
+            string variableName = "Test";
+
+            // Assert
+            IEnsurable<string> ensurable = Ensure.NotDefault(() => variableName);
+
+            // Act
+            Assert.Equal(ensurable.Value, variableName);
+        }
+
+        [Test]
+        public void NotDefaultExpressionCheckShouldThrowArgumentExceptionIfExpressionIsNotMemberExpression()
+        {
+            // Assert
+            Exception ex = Assert.Throws<ArgumentException>(() => Ensure.NotDefault(() => string.Empty + string.Empty));
+
+            // Act
+            Assert.Equal("Expression must be of type MemberExpression.", ex.Message);
+        }
     }
 }
 #endif
