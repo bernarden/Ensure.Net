@@ -4,7 +4,7 @@ using Ensure.Net.Tests.Helpers;
 namespace Ensure.Net.Tests
 {
     [TestFixture]
-    public partial class EnsureTest
+    public class EnsureTest
     {
         [Test]
         public void NotNullCheckShouldThrowArgumentNullExceptionIfVariableIsNull()

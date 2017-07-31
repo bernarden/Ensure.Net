@@ -36,6 +36,35 @@ namespace Ensure.Net
 
             return NotNull(value, variableName);
         }
+
+        /// <summary>
+        /// Determine whether the string is null or empty, if so throws an appropriate exception depending on the input.
+        /// </summary>
+        /// <param name="valueExpression">Expression with the string to be checked.</param>
+        public static IEnsurable<string> NotNullOrEmpty(Expression<Func<string>> valueExpression)
+        {
+            if (valueExpression == null)
+            {
+                throw new ArgumentException("Expression cannot be null.");
+            }
+
+            ConstantExpression constantExpression = valueExpression.Body as ConstantExpression;
+            if (constantExpression != null)
+            {
+                return NotNullOrEmpty((string)constantExpression.Value, "Variable");
+            }
+
+            MemberExpression memberExpression = valueExpression.Body as MemberExpression;
+            if (memberExpression == null)
+            {
+                throw new ArgumentException("Expression must be of type MemberExpression.");
+            }
+
+            string value = (string)Expression.Lambda(memberExpression).Compile().DynamicInvoke();
+            string variableName = string.IsNullOrEmpty(memberExpression.Member.Name) ? "Variable" : memberExpression.Member.Name;
+
+            return NotNullOrEmpty(value, variableName);
+        }
 #endif
         /// <summary>
         /// Determine whether an object is null, if so throws an ArgumentNullException.
