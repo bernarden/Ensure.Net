@@ -1,17 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net46;net45;net40;net35;net20;netstandard1.0</TargetFrameworks>
-  </PropertyGroup>
-
-  <PropertyGroup>
     <Version>0.0.1</Version>
     <FileVersion>0.0.1</FileVersion>
-    <Authors>Jacques Marais, Victor Usoltsev</Authors>
-    <Description>Ensure null check library for .NET.</Description>
+    <Authors>Victor Usoltsev</Authors>
+    <Description>Ensure is a null checker library for .NET.</Description>
     <Copyright>Copyright (c) 2017</Copyright>
   </PropertyGroup>
-
+  
+  <PropertyGroup>
+    <TargetFrameworks>net46;net45;net40;net35;net20;netstandard1.0</TargetFrameworks>
+  </PropertyGroup>
+  
   <PropertyGroup Condition="'$(TargetFramework)'=='net46'">
     <DefineConstants>NET46;Expressions_Supported</DefineConstants>
   </PropertyGroup>

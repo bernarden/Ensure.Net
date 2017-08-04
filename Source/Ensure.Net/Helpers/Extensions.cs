@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace Ensure.Net
+namespace Ensure.Net.Helpers
 {
-    public static class Helpers
+    internal static class Extensions
     {
-        public static long GetCount<T>(IEnumerable<T> source)
+        internal static long GetCount<T>(IEnumerable<T> source)
         {
             ICollection<T> sources = source as ICollection<T>;
             if (sources != null)
