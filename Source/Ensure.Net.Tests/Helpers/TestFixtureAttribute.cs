@@ -1,4 +1,4 @@
-namespace Ensure.Net.Tests.Helpers
+namespace Vima.Ensure.Net.Tests.Helpers
 {
     public class TestFixtureAttribute :
 #if XUnit

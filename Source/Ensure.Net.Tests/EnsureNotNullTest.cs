@@ -1,7 +1,7 @@
 using System;
-using Ensure.Net.Tests.Helpers;
+using Vima.Ensure.Net.Tests.Helpers;
 
-namespace Ensure.Net.Tests
+namespace Vima.Ensure.Net.Tests
 {
     [TestFixture]
     public class EnsureNotNullTest

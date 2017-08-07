@@ -1,4 +1,4 @@
-﻿namespace Ensure.Net
+﻿namespace Vima.Ensure.Net
 {
     public interface IEnsurable<T>
     {

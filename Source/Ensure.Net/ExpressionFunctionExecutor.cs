@@ -1,13 +1,11 @@
-﻿using System;
-#if Expressions_Supported
+﻿#if Expressions_Supported
+using System;
 using System.Linq.Expressions;
-#endif
 
-namespace Ensure.Net.Helpers
+namespace Vima.Ensure.Net
 {
     internal class ExpressionFunctionExecutor
     {
-#if Expressions_Supported
         public static IEnsurable<T> ExecuteFunctionWithExpression<T>(Expression<Func<T>> valueExpression, Func<T, string, IEnsurable<T>> action)
         {
             if (valueExpression == null)
@@ -30,6 +28,6 @@ namespace Ensure.Net.Helpers
             T value = (T)Expression.Lambda(memberExpression).Compile().DynamicInvoke();
             return action.Invoke(value, memberExpression.Member.Name);
         }
-#endif
     }
 }
+#endif

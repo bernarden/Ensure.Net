@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Ensure.Net.Tests.Helpers
+namespace Vima.Ensure.Net.Tests.Helpers
 {
     public class Assert
     {

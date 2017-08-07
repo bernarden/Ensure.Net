@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace Ensure.Net.Helpers
+ namespace Vima.Ensure.Net
 {
     internal static class Extensions
     {

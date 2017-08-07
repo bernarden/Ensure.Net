@@ -19,11 +19,13 @@ properties {
     @{"Framework" = "net35"; "TestingFramework" = "net-3.5"; "Utility" = "NUnit";},
     @{"Framework" = "net40"; "TestingFramework" = "net-4.0"; "Utility" = "NUnit";},
     @{"Framework" = "net45"; "TestingFramework" = "net-4.5"; "Utility" = "NUnit";},
+    @{"Framework" = "net451"; "TestingFramework" = "net-4.0"; "Utility" = "NUnit";},
+    @{"Framework" = "net452"; "TestingFramework" = "net-4.5"; "Utility" = "NUnit";},   
     @{"Framework" = "net46"; "TestingFramework" = "net46"; "Utility" = "DotnetTest";}
     )
 }
 
-task default -depends PrepareTools, Restore, Clean, Build, Test 
+task default -depends PrepareTools, Restore, Clean, Build, Test
 
 task PrepareTools {
   if (!(Test-Path $TempDirectory))
