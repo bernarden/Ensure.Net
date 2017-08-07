@@ -9,7 +9,9 @@
   </PropertyGroup>
   
   <PropertyGroup>
-    <TargetFrameworks>net46;net45;net40;net35;net20;netstandard1.0</TargetFrameworks>
+    <TargetFrameworks>net46;net45;net40;net35;net20;netstandard1.0;portable-net40+sl5+win8+wpa81+wp8;portable-net45+win8+wpa81+wp8</TargetFrameworks>
+    <AssemblyName>Vima.Ensure.Net</AssemblyName>
+    <RootNamespace>Vima.Ensure.Net</RootNamespace>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(TargetFramework)'=='net46'">
@@ -20,10 +22,30 @@
     <DefineConstants>NET45;Expressions_Supported</DefineConstants>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(TargetFramework)'=='portable-net45+win8+wpa81+wp8'">
+    <DefineConstants>PORTABLE45;Expressions_Supported</DefineConstants>
+    <TargetFrameworkIdentifier>.NETPortable</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
+    <NugetTargetMoniker>.NETPortable,Version=v0.0,Profile=Profile259</NugetTargetMoniker>
+    <LanguageTargets>$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets</LanguageTargets>
+    <IncludeProjectPriFile>false</IncludeProjectPriFile>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(TargetFramework)'=='net40'">
     <DefineConstants>NET40;Expressions_Supported</DefineConstants>
   </PropertyGroup>
-
+  
+  <PropertyGroup Condition="'$(TargetFramework)'=='portable-net40+sl5+win8+wpa81+wp8'">
+    <DefineConstants>PORTABLE40;Expressions_Supported</DefineConstants>
+    <TargetFrameworkIdentifier>.NETPortable</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile328</TargetFrameworkProfile>
+    <NugetTargetMoniker>.NETPortable,Version=v0.0,Profile=Profile328</NugetTargetMoniker>
+    <LanguageTargets>$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets</LanguageTargets>
+    <IncludeProjectPriFile>false</IncludeProjectPriFile>
+  </PropertyGroup>
+  
   <PropertyGroup Condition="'$(TargetFramework)'=='net35'">
     <DefineConstants>NET35;Expressions_Supported</DefineConstants>
   </PropertyGroup>

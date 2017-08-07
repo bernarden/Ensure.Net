@@ -1,10 +1,9 @@
 ﻿using System;
-using Ensure.Net.Helpers;
 #if Expressions_Supported
 using System.Linq.Expressions;
 #endif
 
-namespace Ensure.Net
+namespace Vima.Ensure.Net
 {
     public static partial class Ensure
     {

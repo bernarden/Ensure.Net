@@ -1,3 +1,3 @@
 ﻿using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("Ensure.Net.Tests")]
+[assembly: InternalsVisibleTo("Vima.Ensure.Net.Tests")]

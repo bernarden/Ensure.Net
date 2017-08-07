@@ -1,7 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net46;net45;net40;net35;net20;netcoreapp1.0</TargetFrameworks>
+    <TargetFrameworks>net46;net452;net451;net45;net40;net35;net20;netcoreapp1.0</TargetFrameworks>
+    <AssemblyName>Vima.Ensure.Net.Tests</AssemblyName>
+    <RootNamespace>Vima.Ensure.Net.Tests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'=='netcoreapp1.0' OR '$(TargetFramework)'=='net46'">
@@ -10,7 +12,7 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)'=='net20' OR '$(TargetFramework)'=='net35' OR '$(TargetFramework)'=='net40' OR '$(TargetFramework)'=='net45'">
+  <ItemGroup Condition="'$(TargetFramework)'=='net20' OR '$(TargetFramework)'=='net35' OR '$(TargetFramework)'=='net40' OR '$(TargetFramework)'=='net45' OR '$(TargetFramework)'=='net451' OR'$(TargetFramework)'=='net452'">
     <PackageReference Include="NUnit" Version="3.7.1" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.8.0" />
   </ItemGroup>
@@ -27,6 +29,16 @@
   <PropertyGroup Condition="'$(TargetFramework)'=='net45'">
     <ReferringTargetFrameworkForProjectReferences>.NETFramework,Version=v4.5</ReferringTargetFrameworkForProjectReferences>
     <DefineConstants>NET45;NUnit;Expressions_Supported</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='net452'">
+    <ReferringTargetFrameworkForProjectReferences>.NETPortable,Version=v0.0,Profile=Profile259</ReferringTargetFrameworkForProjectReferences>
+    <DefineConstants>PORTABLE45;NUnit;Expressions_Supported</DefineConstants>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(TargetFramework)'=='net451'">
+    <ReferringTargetFrameworkForProjectReferences>.NETPortable,Version=v0.0,Profile=Profile328</ReferringTargetFrameworkForProjectReferences>
+    <DefineConstants>PORTABLE40;NUnit;Expressions_Supported</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='net40'">

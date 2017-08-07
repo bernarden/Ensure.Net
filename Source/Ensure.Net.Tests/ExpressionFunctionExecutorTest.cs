@@ -1,16 +1,14 @@
-using System;
-using Ensure.Net.Helpers;
-using Ensure.Net.Tests.Helpers;
 #if Expressions_Supported
+using System;
+using Vima.Ensure.Net.Tests.Helpers;
+using Vima.Ensure.Net;
 using System.Linq.Expressions;
-#endif
 
-namespace Ensure.Net.Tests
+namespace Vima.Ensure.Net.Tests
 {
     [TestFixture]
     public class ExpressionFunctionExecutorTest
     {
-#if Expressions_Supported
         [Test]
         public void ExecuteFunctionWithExpressionShouldThrowArgumentExceptionIfExpressionIsNull()
         {
@@ -69,6 +67,6 @@ namespace Ensure.Net.Tests
             // Assert
             Assert.Equal(nameof(variableToCheck), executeFunctionWithExpression.Value);
         }
-#endif
     }
 }
+#endif

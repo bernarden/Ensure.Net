@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace Ensure.Net
+namespace Vima.Ensure.Net
 {
     public static partial class Ensure
     {
-        private static void CheckForNulls<T>(T value, ref string parameterName) where T : class
+        private static void CheckForNulls<T>(T value, ref string parameterName)
         {
             SetDefaultParameterNameIfNull(ref parameterName);
 

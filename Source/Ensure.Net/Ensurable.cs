@@ -1,8 +1,8 @@
-﻿namespace Ensure.Net
+﻿namespace Vima.Ensure.Net
 {
-    public class Ensurable<T> : IEnsurable<T>
+    internal class Ensurable<T> : IEnsurable<T>
     {
-        public Ensurable(T value)
+        internal Ensurable(T value)
         {
             Value = value;
         }
