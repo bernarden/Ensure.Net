@@ -1,11 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version>0.0.1</Version>
-    <FileVersion>0.0.1</FileVersion>
+    <Version>1.0.0</Version>
+    <FileVersion>1.0.0</FileVersion>
     <Authors>Victor Usoltsev</Authors>
-    <Description>Ensure is a null checker library for .NET.</Description>
-    <Copyright>Copyright (c) 2017</Copyright>
+    <Description>Ensure.Net is a null checker library for .NET</Description>
+    <Copyright>Copyright © Victor Usoltsev 2017</Copyright>
+    <PackageLicenseUrl>https://github.com/bernarden/Ensure.Net/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/bernarden/Ensure.Net/master/Resources/NugetIcon.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/bernarden/Ensure.Net</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>ensure argument not null</PackageTags>
+    <PackageProjectUrl>https://github.com/bernarden/Ensure.Net</PackageProjectUrl>
+    <Company>Vima</Company>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <Product>Ensure.Net</Product>
+    <PackageId>Ensure.Net</PackageId>
   </PropertyGroup>
   
   <PropertyGroup>
