@@ -32,6 +32,32 @@ namespace Vima.Ensure.Net.Tests
             Assert.Equal(result.Value, variableName);
         }
 
+        [Test]
+        public void NotNullCheckShouldThrowArgumentNullExceptionForNullStructValue()
+        {
+            // Arrange
+            Guid? variableName = null;
+
+            // Act
+            Exception ex = Assert.Throws<ArgumentNullException>(() => Ensure.NotNull(variableName, nameof(variableName)));
+
+            // Assert
+            Assert.Equal($"{nameof(variableName)} cannot be null.", ex.Message);
+        }
+
+        [Test]
+        public void NotNullCheckShouldNotThrowArgumentNullExceptionForNotNullStructValue()
+        {
+            // Arrange
+            int? variableName = 5;
+
+            // Act
+            IEnsurable<int> result = Ensure.NotNull(variableName, nameof(variableName));
+
+            // Assert
+            Assert.Equal(result.Value, variableName);
+        }
+
 #if Expressions_Supported
 
         [Test]
@@ -68,6 +94,32 @@ namespace Vima.Ensure.Net.Tests
 
             // Assert
             Assert.Equal(ensurable.Value, variableName);
+        }
+
+        [Test]
+        public void NotNullExpressionCheckShouldThrowArgumentNullExceptionForNullStructValue()
+        {
+            // Arrange
+            Guid? variableName = null;
+
+            // Act
+            Exception ex = Assert.Throws<ArgumentNullException>(() => Ensure.NotNull(() => variableName));
+
+            // Assert
+            Assert.Equal($"{nameof(variableName)} cannot be null.", ex.Message);
+        }
+
+        [Test]
+        public void NotNullExpressionCheckShouldNotThrowArgumentNullExceptionForNotNullStructValue()
+        {
+            // Arrange
+            int? variableName = 5;
+
+            // Act
+            IEnsurable<int> result = Ensure.NotNull(() => variableName);
+
+            // Assert
+            Assert.Equal(result.Value, variableName);
         }
 #endif
     }
