@@ -52,7 +52,7 @@ namespace Vima.Ensure.Net
         public static IEnsurable<string> NotNullOrEmpty(Expression<Func<string>> valueExpression)
         {
             IEnsurable<string> Func(string value, string parameterName) => NotNullOrEmpty(value, parameterName);
-            return ExpressionFunctionExecutor.ExecuteFunctionWithExpression(valueExpression, Func);
+            return ExpressionFunctionExecutor.ExecuteFunctionWithGenericValueInExpression(valueExpression, Func);
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Vima.Ensure.Net
         public static IEnsurable<IEnumerable<T>> NotNullOrEmpty<T>(Expression<Func<IEnumerable<T>>> valueExpression)
         {
             IEnsurable<IEnumerable<T>> Func(IEnumerable<T> value, string parameterName) => NotNullOrEmpty(value, parameterName);
-            return ExpressionFunctionExecutor.ExecuteFunctionWithExpression(valueExpression, Func);
+            return ExpressionFunctionExecutor.ExecuteFunctionWithGenericValueInExpression(valueExpression, Func);
         }
 #endif
     }

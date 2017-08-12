@@ -34,7 +34,7 @@ namespace Vima.Ensure.Net
         public static IEnsurable<T> NotDefault<T>(Expression<Func<T>> valueExpression)
         {
             IEnsurable<T> Func(T value, string parameterName) => NotDefault(value, parameterName);
-            return ExpressionFunctionExecutor.ExecuteFunctionWithExpression(valueExpression, Func);
+            return ExpressionFunctionExecutor.ExecuteFunctionWithGenericValueInExpression(valueExpression, Func);
         }
 #endif
     }
