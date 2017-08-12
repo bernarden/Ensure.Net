@@ -33,7 +33,7 @@ namespace Vima.Ensure.Net.Tests
         }
 
         [Test]
-        public void NotDefaultCheckShouldNotThrowArgumentExceptionIfGuidVariableIsSetToNewGuid()
+        public void NotDefaultCheckShouldNotThrowExceptionIfGuidVariableIsSetToNewGuid()
         {
             // Arrange
             Guid variableName = Guid.NewGuid();
@@ -46,7 +46,7 @@ namespace Vima.Ensure.Net.Tests
         }
 
         [Test]
-        public void NotDefaultCheckShouldNotThrowArgumentNullExceptionIfVariableIsNotNull()
+        public void NotDefaultCheckShouldNotThrowExceptionIfVariableIsNotNull()
         {
             // Arrange
             string variableName = "Test";
@@ -58,10 +58,49 @@ namespace Vima.Ensure.Net.Tests
             Assert.Equal(result.Value, variableName);
         }
 
+        [Test]
+        public void NotDefaultCheckShouldNotThrowExceptionIfIntegerVariableHasNotDefaultValue()
+        {
+            // Arrange
+            int variableName = 5;
+
+            // Act
+            IEnsurable<int> result = Ensure.NotDefault(variableName, nameof(variableName));
+
+            // Assert
+            Assert.Equal(result.Value, variableName);
+        }
+
+        [Test]
+        public void NotDefaultCheckShouldNotThrowExceptionIfNullableStructIsNotNull()
+        {
+            // Arrange
+            Guid? variableName = Guid.NewGuid();
+
+            // Act
+            IEnsurable<Guid> result = Ensure.NotDefault(variableName, nameof(variableName));
+
+            // Assert
+            Assert.Equal(result.Value, variableName);
+        }
+
+        [Test]
+        public void NotDefaultCheckShouldThrowArgumentNullExceptionIfNullableStructIsNull()
+        {
+            // Arrange
+            Guid? variableName = null;
+
+            // Act
+            Exception ex = Assert.Throws<ArgumentNullException>(() => Ensure.NotDefault(variableName, nameof(variableName)));
+
+            // Assert
+            Assert.Equal($"{nameof(variableName)} cannot be null.", ex.Message);
+        }
+
 #if Expressions_Supported
 
         [Test]
-        public void NotDefaultExpressionCheckShouldThrowArgumentNullExceptionIfVariableIsNull()
+        public void NotDefaultExpressionCheckShouldThrowArgumentExceptionIfVariableIsNull()
         {
             // Arrange
             string variableName = null;
@@ -74,7 +113,7 @@ namespace Vima.Ensure.Net.Tests
         }
 
         [Test]
-        public void NotDefaultExpressionCheckShouldThrowArgumentNullExceptionIfStringIsNullButIsNotDeclaredAsVariable()
+        public void NotDefaultExpressionCheckShouldThrowArgumentExceptionIfStringIsNullButIsNotDeclaredAsVariable()
         {
             // Act
             Exception ex = Assert.Throws<ArgumentException>(() => Ensure.NotDefault(() => (string)null));
@@ -94,6 +133,32 @@ namespace Vima.Ensure.Net.Tests
 
             // Assert
             Assert.Equal(ensurable.Value, variableName);
+        }
+
+        [Test]
+        public void NotDefaultExpressionCheckShouldNotThrowExceptionIfNullableStructIsNotNull()
+        {
+            // Arrange
+            Guid? variableName = Guid.NewGuid();
+
+            // Act
+            IEnsurable<Guid> result = Ensure.NotDefault(() => variableName);
+
+            // Assert
+            Assert.Equal(result.Value, variableName);
+        }
+
+        [Test]
+        public void NotDefaultExpressionCheckShouldThrowArgumentNullExceptionIfNullableStructIsNull()
+        {
+            // Arrange
+            Guid? variableName = null;
+
+            // Act
+            Exception ex = Assert.Throws<ArgumentNullException>(() => Ensure.NotDefault(() => variableName));
+
+            // Assert
+            Assert.Equal($"{nameof(variableName)} cannot be null.", ex.Message);
         }
 #endif
     }

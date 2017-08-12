@@ -101,6 +101,19 @@ namespace Vima.Ensure.Net.Tests
         }
 
         [Test]
+        public void NotNullOrEmptyListCheckShouldNotThrowExceptionIfListOfNullableStructIsNotNullOrEmpty()
+        {
+            // Arrange
+            List<Guid?> variableName = new List<Guid?> { Guid.NewGuid(), null };
+
+            // Act
+            IEnsurable<IEnumerable<Guid?>> result = Ensure.NotNullOrEmpty(variableName, nameof(variableName));
+
+            // Assert
+            Assert.Equal(result.Value, variableName);
+        }
+
+        [Test]
         public void NotNullOrEmptyListCheckShouldThrowArgumentNullExceptionWithCorrectMessageIfVariableNameIsNull()
         {
             // Act
