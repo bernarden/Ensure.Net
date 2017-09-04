@@ -7,16 +7,12 @@ using System.Collections.Generic;
     {
         internal static long GetCount<T>(IEnumerable<T> source)
         {
-            ICollection<T> sources = source as ICollection<T>;
-            if (sources != null)
+            switch (source)
             {
-                return sources.Count;
-            }
-
-            ICollection collection = source as ICollection;
-            if (collection != null)
-            {
-                return collection.Count;
+                case ICollection<T> genericCollection:
+                    return genericCollection.Count;
+                case ICollection collection:
+                    return collection.Count;
             }
 
             long count = 0;
