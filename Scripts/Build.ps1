@@ -9,12 +9,13 @@ properties {
   $NugetFileUrl = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
 
   $NugetPackages = @(
-    @{"Name" = "vswhere"; "Version" = "2.0.2"; "Alias" = "VSWhere"; "ExePath" = "tools/vswhere.exe"},
+    @{"Name" = "vswhere"; "Version" = "2.1.3"; "Alias" = "VSWhere"; "ExePath" = "tools/vswhere.exe"},
     @{"Name" = "NUnit.ConsoleRunner"; "Version" = "3.7.0"; "Alias" = "NUnitConsole"; "ExePath" = "tools/nunit3-console.exe" }
     )
 
   $TestsConfig=@(
     @{"Framework" = "netcoreapp1.0"; "TestingFramework" = "netcoreapp1.0"; "Utility" = "DotnetTest";},
+    @{"Framework" = "netcoreapp2.0"; "TestingFramework" = "netcoreapp2.0"; "Utility" = "DotnetTest";},
     @{"Framework" = "net20"; "TestingFramework" = "net-2.0"; "Utility" = "NUnit";},  
     @{"Framework" = "net35"; "TestingFramework" = "net-3.5"; "Utility" = "NUnit";},
     @{"Framework" = "net40"; "TestingFramework" = "net-4.0"; "Utility" = "NUnit";},
