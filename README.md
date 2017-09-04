@@ -25,9 +25,9 @@ public class YourClass
 
     public YourClass(IYourDependency dependency, int? intValue, Guid recordId)
     {
-        _dependency = Ensure.NotNull(() => dependency).Value;
-        _intValue = Ensure.NotNull(() => intValue).Value;
-        _recordId = Ensure.NotDefault(() => recordId).Value;
+        _dependency = Ensure.NotNull(dependency).Value;
+        _intValue = Ensure.NotNull(intValue).Value;
+        _recordId = Ensure.NotDefault(recordId).Value;
     }
     ...
 }
@@ -39,21 +39,7 @@ public class YourClass
     ...
     public void YourMethod(IYourDependency dependency)
     {
-        Ensure.NotNull(() => dependency);
-        ...
-    }
-    ...
-```
-
-### NET20
-
-Since .Net 2.0 doesn't support expressions, the only available syntax is shown bellow.
-
-```csharp
-    ...
-    public void YourMethod(string input)
-    {
-        Ensure.NotNullOrEmpty(input, nameof(input));
+        Ensure.NotNull(dependency);
         ...
     }
     ...
