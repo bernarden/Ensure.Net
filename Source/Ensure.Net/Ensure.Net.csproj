@@ -20,7 +20,7 @@
   </PropertyGroup>
   
   <PropertyGroup>
-    <TargetFrameworks>net46;net45;net40;net35;net20;netstandard1.0;portable-net40+sl5+win8+wpa81+wp8;portable-net45+win8+wpa81+wp8</TargetFrameworks>
+    <TargetFrameworks>net46;net45;net40;net35;net20;netstandard1.0;netstandard2.0;portable-net40+sl5+win8+wpa81+wp8;portable-net45+win8+wpa81+wp8</TargetFrameworks>
     <AssemblyName>Vima.Ensure.Net</AssemblyName>
     <RootNamespace>Vima.Ensure.Net</RootNamespace>
   </PropertyGroup>
@@ -33,7 +33,7 @@
     <DefineConstants>NET45;Expressions_Supported</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)'=='portable-net45+win8+wpa81+wp8'">
+  <PropertyGroup Condition="'$(TargetFramework)'=='portable-net45+win8+wpa81+wp8' AND '$(MSBuildRuntimeType)' == 'Full'">
     <DefineConstants>PORTABLE45;Expressions_Supported</DefineConstants>
     <TargetFrameworkIdentifier>.NETPortable</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -47,7 +47,7 @@
     <DefineConstants>NET40;Expressions_Supported</DefineConstants>
   </PropertyGroup>
   
-  <PropertyGroup Condition="'$(TargetFramework)'=='portable-net40+sl5+win8+wpa81+wp8'">
+  <PropertyGroup Condition="'$(TargetFramework)'=='portable-net40+sl5+win8+wpa81+wp8' AND '$(MSBuildRuntimeType)' == 'Full'">
     <DefineConstants>PORTABLE40;Expressions_Supported</DefineConstants>
     <TargetFrameworkIdentifier>.NETPortable</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
@@ -67,6 +67,10 @@
 
   <PropertyGroup Condition="'$(TargetFramework)'=='netstandard1.0'">
     <DefineConstants>NETSTANDARD1_0;Expressions_Supported</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
+    <DefineConstants>NETSTANDARD2_0;Expressions_Supported</DefineConstants>
   </PropertyGroup>
 
 </Project>
