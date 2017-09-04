@@ -18,37 +18,37 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Ensure.Net\Ensure.Net.csproj" />
+    <ProjectReference Include="..\Vima.Ensure.Net\Vima.Ensure.Net.csproj" />
   </ItemGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='net46'">
     <ReferringTargetFrameworkForProjectReferences>.NETFramework,Version=v4.6</ReferringTargetFrameworkForProjectReferences>
-    <DefineConstants>NET46;XUnit;Expressions_Supported</DefineConstants>
+    <DefineConstants>NET46;XUnit</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='net45'">
     <ReferringTargetFrameworkForProjectReferences>.NETFramework,Version=v4.5</ReferringTargetFrameworkForProjectReferences>
-    <DefineConstants>NET45;NUnit;Expressions_Supported</DefineConstants>
+    <DefineConstants>NET45;NUnit</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='net452'">
     <ReferringTargetFrameworkForProjectReferences>.NETPortable,Version=v0.0,Profile=Profile259</ReferringTargetFrameworkForProjectReferences>
-    <DefineConstants>PORTABLE45;NUnit;Expressions_Supported</DefineConstants>
+    <DefineConstants>PORTABLE45;NUnit</DefineConstants>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(TargetFramework)'=='net451'">
     <ReferringTargetFrameworkForProjectReferences>.NETPortable,Version=v0.0,Profile=Profile328</ReferringTargetFrameworkForProjectReferences>
-    <DefineConstants>PORTABLE40;NUnit;Expressions_Supported</DefineConstants>
+    <DefineConstants>PORTABLE40;NUnit</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='net40'">
     <ReferringTargetFrameworkForProjectReferences>.NETFramework,Version=v4.0</ReferringTargetFrameworkForProjectReferences>
-    <DefineConstants>NET40;NUnit;Expressions_Supported</DefineConstants>
+    <DefineConstants>NET40;NUnit</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='net35'">
     <ReferringTargetFrameworkForProjectReferences>.NETFramework,Version=v3.5</ReferringTargetFrameworkForProjectReferences>
-    <DefineConstants>NET35;NUnit;Expressions_Supported</DefineConstants>
+    <DefineConstants>NET35;NUnit</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='net20'">
@@ -58,12 +58,12 @@
 
   <PropertyGroup Condition="'$(TargetFramework)'=='netcoreapp1.0'">
     <ReferringTargetFrameworkForProjectReferences>.NETStandard,Version=v1.0</ReferringTargetFrameworkForProjectReferences>
-    <DefineConstants>NETSTANDARD1_0;XUnit;Expressions_Supported</DefineConstants>
+    <DefineConstants>NETSTANDARD1_0;XUnit</DefineConstants>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(TargetFramework)'=='netcoreapp2.0'">
     <ReferringTargetFrameworkForProjectReferences>.NETStandard,Version=v2.0</ReferringTargetFrameworkForProjectReferences>
-    <DefineConstants>NETSTANDARD2_0;XUnit;Expressions_Supported</DefineConstants>
+    <DefineConstants>NETSTANDARD2_0;XUnit</DefineConstants>
   </PropertyGroup>
 
 </Project>

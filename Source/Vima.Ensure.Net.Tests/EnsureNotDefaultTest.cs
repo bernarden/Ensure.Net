@@ -13,10 +13,12 @@ namespace Vima.Ensure.Net.Tests
             string variableName = null;
 
             // Act
-            Exception ex = Assert.Throws<ArgumentException>(() => Ensure.NotDefault(variableName, nameof(variableName)));
+            Exception ex1 = Assert.Throws<ArgumentException>(() => Ensure.NotDefault(variableName, nameof(variableName)));
+            Exception ex2 = Assert.Throws<ArgumentException>(() => Ensure.NotDefault(variableName));
 
             // Assert
-            Assert.Equal($"{nameof(variableName)} cannot be set to default value.", ex.Message);
+            Assert.Equal($"{nameof(variableName)} cannot be set to default value.", ex1.Message);
+            Assert.Equal("Variable cannot be set to default value.", ex2.Message);
         }
 
         [Test]
@@ -91,75 +93,12 @@ namespace Vima.Ensure.Net.Tests
             Guid? variableName = null;
 
             // Act
-            Exception ex = Assert.Throws<ArgumentNullException>(() => Ensure.NotDefault(variableName, nameof(variableName)));
+            Exception ex1 = Assert.Throws<ArgumentNullException>(() => Ensure.NotDefault(variableName, nameof(variableName)));
+            Exception ex2 = Assert.Throws<ArgumentNullException>(() => Ensure.NotDefault(variableName));
 
             // Assert
-            Assert.Equal($"{nameof(variableName)} cannot be null.", ex.Message);
+            Assert.Equal($"{nameof(variableName)} cannot be null.", ex1.Message);
+            Assert.Equal("Variable cannot be null.", ex2.Message);
         }
-
-#if Expressions_Supported
-
-        [Test]
-        public void NotDefaultExpressionCheckShouldThrowArgumentExceptionIfVariableIsNull()
-        {
-            // Arrange
-            string variableName = null;
-
-            // Act
-            Exception ex = Assert.Throws<ArgumentException>(() => Ensure.NotDefault(() => variableName));
-
-            // Assert
-            Assert.Equal($"{nameof(variableName)} cannot be set to default value.", ex.Message);
-        }
-
-        [Test]
-        public void NotDefaultExpressionCheckShouldThrowArgumentExceptionIfStringIsNullButIsNotDeclaredAsVariable()
-        {
-            // Act
-            Exception ex = Assert.Throws<ArgumentException>(() => Ensure.NotDefault(() => (string)null));
-
-            // Assert
-            Assert.Equal("Variable cannot be set to default value.", ex.Message);
-        }
-
-        [Test]
-        public void NotDefaultExpressionCheckShouldNotThrowExceptionIfVariableIsNotDefault()
-        {
-            // Arrange
-            string variableName = "Test";
-
-            // Act
-            IEnsurable<string> ensurable = Ensure.NotDefault(() => variableName);
-
-            // Assert
-            Assert.Equal(ensurable.Value, variableName);
-        }
-
-        [Test]
-        public void NotDefaultExpressionCheckShouldNotThrowExceptionIfNullableStructIsNotNull()
-        {
-            // Arrange
-            Guid? variableName = Guid.NewGuid();
-
-            // Act
-            IEnsurable<Guid> result = Ensure.NotDefault(() => variableName);
-
-            // Assert
-            Assert.Equal(result.Value, variableName);
-        }
-
-        [Test]
-        public void NotDefaultExpressionCheckShouldThrowArgumentNullExceptionIfNullableStructIsNull()
-        {
-            // Arrange
-            Guid? variableName = null;
-
-            // Act
-            Exception ex = Assert.Throws<ArgumentNullException>(() => Ensure.NotDefault(() => variableName));
-
-            // Assert
-            Assert.Equal($"{nameof(variableName)} cannot be null.", ex.Message);
-        }
-#endif
     }
 }
