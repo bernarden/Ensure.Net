@@ -3,13 +3,13 @@ properties {
   $MainDirectory = Resolve-Path ..
   $SourceDirectory = "$MainDirectory\Source"
   $TempDirectory =  "$MainDirectory\Temp"
-  $SolutionFilePath =  "$SourceDirectory\Ensure.Net.sln"
+  $SolutionFilePath =  "$SourceDirectory\Vima.Ensure.Net.sln"
 
   $NugetFilePath = "$TempDirectory\nuget.exe"
   $NugetFileUrl = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
 
   $NugetPackages = @(
-    @{"Name" = "vswhere"; "Version" = "2.1.3"; "Alias" = "VSWhere"; "ExePath" = "tools/vswhere.exe"},
+    @{"Name" = "vswhere"; "Version" = "2.1.4"; "Alias" = "VSWhere"; "ExePath" = "tools/vswhere.exe"},
     @{"Name" = "NUnit.ConsoleRunner"; "Version" = "3.7.0"; "Alias" = "NUnitConsole"; "ExePath" = "tools/nunit3-console.exe" }
     )
 
@@ -26,7 +26,7 @@ properties {
     )
 }
 
-task default -depends PrepareTools, Restore, Clean, Build, Test
+task default -depends PrepareTools, Restore, Clean, Build, Test, NugetPackage
 
 task PrepareTools {
   if (!(Test-Path $TempDirectory))
@@ -72,7 +72,7 @@ task Test {
 }
 
 task NugetPackage{
-  exec { MSBuild "/t:pack" "/p:IncludeSource=true" "/p:Configuration=Release" "$SourceDirectory\Ensure.Net\Ensure.Net.csproj" }
+  exec { MSBuild "/t:pack" "/p:IncludeSource=true" "/p:Configuration=Release" "$SourceDirectory\Vima.Ensure.Net\Vima.Ensure.Net.csproj" }
 }
 
 function DownloadNugetFile()
