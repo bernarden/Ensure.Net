@@ -87,8 +87,8 @@ namespace Vima.Ensure.Net.Tests
             Exception ex2 = Assert.Throws<ArgumentException>(() => Ensure.NotNullOrEmpty(variableName));
 
             // Assert
-            Assert.Equal($"{nameof(variableName)} cannot be an empty.", ex1.Message);
-            Assert.Equal("Variable cannot be an empty.", ex2.Message);
+            Assert.Equal($"{nameof(variableName)} cannot be empty.", ex1.Message);
+            Assert.Equal("Variable cannot be empty.", ex2.Message);
         }
 
         [Test]
