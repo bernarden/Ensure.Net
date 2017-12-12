@@ -35,7 +35,7 @@ namespace Vima.Ensure.Net
 
             if (Extensions.GetCount(value) == 0L)
             {
-                throw new ArgumentException($"{parameterName ?? DefaultParameterName} cannot be an empty.");
+                throw new ArgumentException($"{parameterName ?? DefaultParameterName} cannot be empty.");
             }
 
             return new Ensurable<IEnumerable<T>>(value);
