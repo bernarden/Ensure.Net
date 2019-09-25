@@ -44,3 +44,7 @@ public class YourClass
     }
     ...
 ```
+
+## ReSharper
+Update ReSharper's settings to auto generate null checks using this library.
+Refer to this [.DotSettings](./Resources/ReSharper.DotSettings) file for an example.
