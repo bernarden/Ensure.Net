@@ -1,4 +1,5 @@
 ﻿using System;
+using Vima.Ensure.Net.Attributes;
 
 namespace Vima.Ensure.Net
 {
@@ -10,7 +11,8 @@ namespace Vima.Ensure.Net
         /// </summary>
         /// <param name="value">The string variable to be checked.</param>
         /// <param name="parameterName">The name of the parameter.</param>
-        public static IEnsurable<string> NotNullOrWhiteSpace(string value, string parameterName = null)
+        public static IEnsurable<string> NotNullOrWhiteSpace([ValidatedNotNull] string value,
+            string parameterName = null)
         {
             CheckForNulls(value, parameterName);
 
@@ -20,7 +22,8 @@ namespace Vima.Ensure.Net
                     return new Ensurable<string>(value);
             }
 
-            throw new ArgumentException($"{parameterName ?? DefaultParameterName} cannot contain only white space characters.");
+            throw new ArgumentException(
+                $"{parameterName ?? DefaultParameterName} cannot contain only white space characters.");
         }
     }
 }

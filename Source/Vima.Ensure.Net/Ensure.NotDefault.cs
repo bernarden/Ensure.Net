@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Vima.Ensure.Net.Attributes;
 
 namespace Vima.Ensure.Net
 {
@@ -10,7 +11,7 @@ namespace Vima.Ensure.Net
         /// </summary>
         /// <param name="value">The object variable to be checked.</param>
         /// <param name="parameterName">The name of the parameter.</param>
-        public static IEnsurable<T> NotDefault<T>(T value, string parameterName = null)
+        public static IEnsurable<T> NotDefault<T>([ValidatedNotNull] T value, string parameterName = null)
         {
             if (EqualityComparer<T>.Default.Equals(value, default(T)))
             {
@@ -25,7 +26,8 @@ namespace Vima.Ensure.Net
         /// </summary>
         /// <param name="value">The nullable struct variable to be checked.</param>
         /// <param name="parameterName">The name of the parameter.</param>
-        public static IEnsurable<T> NotDefault<T>(T? value, string parameterName = null) where T : struct
+        public static IEnsurable<T> NotDefault<T>([ValidatedNotNull] T? value, string parameterName = null)
+            where T : struct
         {
             CheckForNulls(value, parameterName);
 

@@ -1,4 +1,6 @@
-﻿namespace Vima.Ensure.Net
+﻿using Vima.Ensure.Net.Attributes;
+
+namespace Vima.Ensure.Net
 {
     public static partial class Ensure
     {
@@ -7,7 +9,7 @@
         /// </summary>
         /// <param name="value">The object to be checked.</param>
         /// <param name="parameterName">The name of the parameter.</param>
-        public static IEnsurable<T> NotNull<T>(T value, string parameterName = null) where T : class
+        public static IEnsurable<T> NotNull<T>([ValidatedNotNull] T value, string parameterName = null) where T : class
         {
             CheckForNulls(value, parameterName);
 
@@ -19,7 +21,8 @@
         /// </summary>
         /// <param name="value">The nullable struct to be checked.</param>
         /// <param name="parameterName">The name of the parameter.</param>
-        public static IEnsurable<T> NotNull<T>(T? value, string parameterName = null) where T : struct
+        public static IEnsurable<T> NotNull<T>([ValidatedNotNull] T? value, string parameterName = null)
+            where T : struct
         {
             CheckForNulls(value, parameterName);
 
