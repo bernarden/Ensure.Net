@@ -66,7 +66,7 @@ task Test {
 }
 
 task NugetPackage {
-  exec { MSBuild "/t:pack" "/p:IncludeSource=true" "/p:Configuration=Release" "$SourceDirectory\Vima.Ensure.Net\Vima.Ensure.Net.csproj" }
+  exec { MSBuild "/t:pack" "/p:IncludeSource=true" "/p:SymbolPackageFormat=snupkg" "/p:Configuration=Release" "$SourceDirectory\Vima.Ensure.Net\Vima.Ensure.Net.csproj" }
 }
 
 function DownloadNugetFile() {
