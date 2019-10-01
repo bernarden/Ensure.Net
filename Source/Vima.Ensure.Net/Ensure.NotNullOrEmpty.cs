@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Vima.Ensure.Net.Attributes;
 
 namespace Vima.Ensure.Net
 {
@@ -11,7 +12,7 @@ namespace Vima.Ensure.Net
         /// </summary>
         /// <param name="value">The string variable to be checked.</param>
         /// <param name="parameterName">The name of the parameter.</param>
-        public static IEnsurable<string> NotNullOrEmpty(string value, string parameterName = null)
+        public static IEnsurable<string> NotNullOrEmpty([ValidatedNotNull] string value, string parameterName = null)
         {
             CheckForNulls(value, parameterName);
 
@@ -29,7 +30,8 @@ namespace Vima.Ensure.Net
         /// </summary>
         /// <param name="value">The IEnumerable variable to be checked.</param>
         /// <param name="parameterName">The name of the parameter.</param>
-        public static IEnsurable<IEnumerable<T>> NotNullOrEmpty<T>(IEnumerable<T> value, string parameterName = null)
+        public static IEnsurable<IEnumerable<T>> NotNullOrEmpty<T>([ValidatedNotNull] IEnumerable<T> value,
+            string parameterName = null)
         {
             CheckForNulls(value, parameterName);
 
