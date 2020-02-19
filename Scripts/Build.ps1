@@ -17,6 +17,7 @@ properties {
     @{"Framework" = "net35"; "TestingFramework" = "net-3.5"; "Utility" = "NUnit"; },
     @{"Framework" = "net452"; "TestingFramework" = "net-4.5"; "Utility" = "NUnit"; },   
     @{"Framework" = "netcoreapp2.2"; "TestingFramework" = "netcoreapp2.2"; "Utility" = "DotnetTest"; }
+    @{"Framework" = "netcoreapp3.0"; "TestingFramework" = "netcoreapp3.0"; "Utility" = "DotnetTest"; }
   )
 }
 
