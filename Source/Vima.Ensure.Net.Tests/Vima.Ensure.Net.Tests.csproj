@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net35;net452;netcoreapp2.2</TargetFrameworks>
+    <TargetFrameworks>net35;net452;netcoreapp2.2;netcoreapp3.0</TargetFrameworks>
   </PropertyGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)'=='netcoreapp2.2'">
+  <ItemGroup Condition="'$(TargetFramework)'=='netcoreapp2.2' OR '$(TargetFramework)'=='netcoreapp3.0'">
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
@@ -32,6 +32,11 @@
   <PropertyGroup Condition="'$(TargetFramework)'=='netcoreapp2.2'">
     <ReferringTargetFrameworkForProjectReferences>.NETStandard,Version=v1.0</ReferringTargetFrameworkForProjectReferences>
     <DefineConstants>NETSTANDARD1_0;XUnit</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='netcoreapp3.0'">
+    <ReferringTargetFrameworkForProjectReferences>.NETStandard,Version=v2.0</ReferringTargetFrameworkForProjectReferences>
+    <DefineConstants>NETSTANDARD2_0;XUnit</DefineConstants>
   </PropertyGroup>
   
 </Project>
