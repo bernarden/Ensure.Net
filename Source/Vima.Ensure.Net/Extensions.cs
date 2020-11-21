@@ -1,29 +1,22 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 
- namespace Vima.Ensure.Net
+namespace Vima.Ensure.Net
 {
     internal static class Extensions
     {
-        internal static long GetCount<T>(IEnumerable<T> source)
+        internal static bool IsEmpty(IEnumerable source)
         {
-            switch (source)
+            if (source is ICollection collection)
+                return collection.Count == 0;
+
+            IEnumerator enumerator = source.GetEnumerator();
+            while (enumerator.MoveNext())
             {
-                case ICollection<T> genericCollection:
-                    return genericCollection.Count;
-                case ICollection collection:
-                    return collection.Count;
+                enumerator.Reset();
+                return false;
             }
 
-            long count = 0;
-            using (IEnumerator<T> enumerator = source.GetEnumerator())
-            {
-                while (enumerator.MoveNext())
-                {
-                    checked { ++count; }
-                }
-            }
-            return count;
+            return true;
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Vima.Ensure.Net.Tests.Helpers;
 
 namespace Vima.Ensure.Net.Tests
@@ -8,17 +9,43 @@ namespace Vima.Ensure.Net.Tests
     public class ExtensionsTest
     {
         [Test]
-        public void GetCountShouldBeAbleToHandleNonCollectionEnumerables()
+        public void IsEmptyShouldBeAbleToHandleCollection()
+        {
+            // Arrange
+            Collection<long> collection = new Collection<long> {1, 5, 6};
+
+            // Act
+            bool isEmpty = Extensions.IsEmpty(collection);
+
+            // Assert
+            Assert.Equal(isEmpty, false);
+        }
+
+        [Test]
+        public void IsEmptyShouldBeAbleToHandleFilledNonCollectionEnumerables()
         {
             // Arrange
             long expectedCount = 5;
-            CustomEnumerable<long> enumerable = new CustomEnumerable<long>(expectedCount);
+            IEnumerable enumerable = new CustomEnumerable<long>(expectedCount);
 
             // Act
-            long count = Extensions.GetCount(enumerable);
+            bool isEmpty = Extensions.IsEmpty(enumerable);
 
             // Assert
-            Assert.Equal(count, expectedCount);
+            Assert.Equal(isEmpty, false);
+        }
+
+        [Test]
+        public void IsEmptyShouldBeAbleToHandleEmptyNonCollectionEnumerables()
+        {
+            // Arrange
+            IEnumerable enumerable = new CustomEnumerable<long>();
+
+            // Act
+            bool isEmpty = Extensions.IsEmpty(enumerable);
+
+            // Assert
+            Assert.Equal(isEmpty, true);
         }
 
         [Test]
@@ -27,13 +54,13 @@ namespace Vima.Ensure.Net.Tests
             // Arrange
             long expectedCount = 15;
             CustomEnumerable<long> enumerable = new CustomEnumerable<long>(expectedCount);
-            IEnumerator enumerator = ((IEnumerable)enumerable).GetEnumerator();
+            IEnumerator enumerator = ((IEnumerable) enumerable).GetEnumerator();
 
             // Act
             bool next = enumerator.MoveNext();
-            long firstCurrent = (long)enumerator.Current;
+            long firstCurrent = (long) enumerator.Current;
             enumerator.Reset();
-            long secondCurrent = ((IEnumerator<long>)enumerator).Current;
+            long secondCurrent = ((IEnumerator<long>) enumerator).Current;
 
             // Assert
             Assert.Equal(next, true);
@@ -46,7 +73,7 @@ namespace Vima.Ensure.Net.Tests
     {
         private readonly long _numberOfStates;
 
-        public CustomEnumerable(long numberOfStates)
+        public CustomEnumerable(long numberOfStates = 0)
         {
             _numberOfStates = numberOfStates;
         }
@@ -86,7 +113,7 @@ namespace Vima.Ensure.Net.Tests
             _indexOfCurrentState = 0;
         }
 
-        T IEnumerator<T>.Current => (T)Current;
+        T IEnumerator<T>.Current => (T) Current;
 
         public object Current => _indexOfCurrentState;
 
