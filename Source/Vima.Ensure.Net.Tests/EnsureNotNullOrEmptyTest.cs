@@ -132,12 +132,12 @@ namespace Vima.Ensure.Net.Tests
             IDictionary variableName = new Dictionary<string, string> {{"Key", "Value"}};
 
             // Act
-            IEnsurable<IDictionary> result3 = Ensure.NotNullOrEmpty(variableName, nameof(variableName));
-            IEnsurable<IDictionary> result4 = Ensure.NotNullOrEmpty(variableName);
+            IEnsurable<IDictionary> result1 = Ensure.NotNullOrEmpty(variableName, nameof(variableName));
+            IEnsurable<IDictionary> result2 = Ensure.NotNullOrEmpty(variableName);
 
             // Assert
-            Assert.Equal(result3.Value, variableName);
-            Assert.Equal(result4.Value, variableName);
+            Assert.Equal(result1.Value, variableName);
+            Assert.Equal(result2.Value, variableName);
         }
 
         [Test]

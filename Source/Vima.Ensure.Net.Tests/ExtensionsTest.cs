@@ -12,7 +12,7 @@ namespace Vima.Ensure.Net.Tests
         public void IsEmptyShouldBeAbleToHandleCollection()
         {
             // Arrange
-            Collection<long> collection = new Collection<long> {1, 5, 6};
+            Collection<long> collection = new Collection<long> {1};
 
             // Act
             bool isEmpty = Extensions.IsEmpty(collection);
