@@ -1,10 +1,14 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Vima.Ensure.Net.Tests.Helpers;
 
 namespace Vima.Ensure.Net.Tests
 {
     [TestFixture]
+    [SuppressMessage("ReSharper", "ExpressionIsAlwaysNull")]
+    [SuppressMessage("ReSharper", "RedundantArgumentDefaultValue")]
     public class EnsureNotNullOrEmptyTest
     {
         [Test]
@@ -55,7 +59,7 @@ namespace Vima.Ensure.Net.Tests
             List<string> variableName = new List<string> { "element" };
 
             // Act
-            IEnsurable<IEnumerable<string>> result = Ensure.NotNullOrEmpty(variableName, nameof(variableName));
+            IEnsurable<List<string>> result = Ensure.NotNullOrEmpty(variableName, nameof(variableName));
 
             // Assert
             Assert.Equal(result.Value, variableName);
@@ -70,7 +74,7 @@ namespace Vima.Ensure.Net.Tests
             variableName.Enqueue("element-2");
 
             // Act
-            IEnsurable<IEnumerable<string>> result = Ensure.NotNullOrEmpty(variableName, nameof(variableName));
+            IEnsurable<Queue<string>> result = Ensure.NotNullOrEmpty(variableName, nameof(variableName));
 
             // Assert
             Assert.Equal(result.Value, variableName);
@@ -89,6 +93,66 @@ namespace Vima.Ensure.Net.Tests
             // Assert
             Assert.Equal($"{nameof(variableName)} cannot be empty.", ex1.Message);
             Assert.Equal("Variable cannot be empty.", ex2.Message);
+        }
+
+        [Test]
+        public void NotNullOrEmptyDictionaryCheckShouldThrowArgumentExceptionIfVariableIsEmpty()
+        {
+            // Arrange
+            IDictionary variableName = new Dictionary<string, string>();
+
+            // Act
+            Exception ex1 = Assert.Throws<ArgumentException>(() => Ensure.NotNullOrEmpty(variableName, nameof(variableName)));
+            Exception ex2 = Assert.Throws<ArgumentException>(() => Ensure.NotNullOrEmpty(variableName));
+
+            // Assert
+            Assert.Equal($"{nameof(variableName)} cannot be empty.", ex1.Message);
+            Assert.Equal("Variable cannot be empty.", ex2.Message);
+        }        
+        
+        [Test]
+        public void NotNullOrEmptyGenericDictionaryCheckShouldThrowArgumentExceptionIfVariableIsEmpty()
+        {
+            // Arrange
+            IDictionary<string,string> variableName = new Dictionary<string, string>();
+
+            // Act
+            Exception ex1 = Assert.Throws<ArgumentException>(() => Ensure.NotNullOrEmpty(variableName, nameof(variableName)));
+            Exception ex2 = Assert.Throws<ArgumentException>(() => Ensure.NotNullOrEmpty(variableName));           
+
+            // Assert
+            Assert.Equal($"{nameof(variableName)} cannot be empty.", ex1.Message);
+            Assert.Equal("Variable cannot be empty.", ex2.Message);
+        }
+
+        [Test]
+        public void NotNullOrEmptyDictionaryCheckShouldNotThrowExceptionIfIsNotEmpty()
+        {
+            // Arrange
+            IDictionary variableName = new Dictionary<string, string> {{"Key", "Value"}};
+
+            // Act
+            IEnsurable<IDictionary> result1 = Ensure.NotNullOrEmpty(variableName, nameof(variableName));
+            IEnsurable<IDictionary> result2 = Ensure.NotNullOrEmpty(variableName);
+
+            // Assert
+            Assert.Equal(result1.Value, variableName);
+            Assert.Equal(result2.Value, variableName);
+        }
+
+        [Test]
+        public void NotNullOrEmptyGenericDictionaryCheckShouldNotThrowExceptionIfIsNotEmpty()
+        {
+            // Arrange
+            IDictionary<string, string> variableName = new Dictionary<string, string> { { "Key", "Value" } };
+
+            // Act
+            IEnsurable<IDictionary<string, string>> result1 = Ensure.NotNullOrEmpty(variableName, nameof(variableName));
+            IEnsurable<IDictionary<string, string>> result2 = Ensure.NotNullOrEmpty(variableName);
+
+            // Assert
+            Assert.Equal(result1.Value, variableName);
+            Assert.Equal(result2.Value, variableName);
         }
 
         [Test]
@@ -111,7 +175,7 @@ namespace Vima.Ensure.Net.Tests
             List<Guid?> variableName = new List<Guid?> { Guid.NewGuid(), null };
 
             // Act
-            IEnsurable<IEnumerable<Guid?>> result = Ensure.NotNullOrEmpty(variableName, nameof(variableName));
+            IEnsurable<List<Guid?>> result = Ensure.NotNullOrEmpty(variableName, nameof(variableName));
 
             // Assert
             Assert.Equal(result.Value, variableName);

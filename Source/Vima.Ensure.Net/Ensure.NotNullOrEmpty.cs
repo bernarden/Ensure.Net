@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using Vima.Ensure.Net.Attributes;
 
 namespace Vima.Ensure.Net
@@ -7,12 +7,15 @@ namespace Vima.Ensure.Net
     public static partial class Ensure
     {
         /// <summary>
-        /// Determine whether the string is null, if so throws an ArgumentNullException.
-        /// Determine whether the string is empty, if so throws an ArgumentException.
+        /// Determine whether the <see cref="string"/> value is null or empty.
         /// </summary>
-        /// <param name="value">The string variable to be checked.</param>
+        /// <param name="value">The value to check.</param>
         /// <param name="parameterName">The name of the parameter.</param>
-        public static IEnsurable<string> NotNullOrEmpty([ValidatedNotNull] string value, string parameterName = null)
+        /// <exception cref="ArgumentNullException">Thrown when specified value is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when specified value is empty.</exception>
+        public static IEnsurable<string> NotNullOrEmpty(
+            [ValidatedNotNull] string value,
+            string parameterName = null)
         {
             CheckForNulls(value, parameterName);
 
@@ -25,22 +28,25 @@ namespace Vima.Ensure.Net
         }
 
         /// <summary>
-        /// Determine whether the IEnumerable is null, if so throws an ArgumentNullException.
-        /// Determine whether the IEnumerable is empty, if so throws an ArgumentException.
+        /// Determine whether the <typeparamref name="T"/> value is null or empty.
         /// </summary>
-        /// <param name="value">The IEnumerable variable to be checked.</param>
+        /// <param name="value">The value to check.</param>
         /// <param name="parameterName">The name of the parameter.</param>
-        public static IEnsurable<IEnumerable<T>> NotNullOrEmpty<T>([ValidatedNotNull] IEnumerable<T> value,
-            string parameterName = null)
+        /// <typeparam name="T">A type that inherits from the <see cref="IEnumerable"/> interface.</typeparam>
+        /// <exception cref="ArgumentNullException">Thrown when specified value is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when specified value is empty.</exception>
+        public static IEnsurable<T> NotNullOrEmpty<T>(
+            [ValidatedNotNull] T value,
+            string parameterName = null) where T : IEnumerable
         {
             CheckForNulls(value, parameterName);
-
-            if (Extensions.GetCount(value) == 0L)
+        
+            if (Extensions.IsEmpty(value))
             {
                 throw new ArgumentException($"{parameterName ?? DefaultParameterName} cannot be empty.");
             }
-
-            return new Ensurable<IEnumerable<T>>(value);
+        
+            return new Ensurable<T>(value);
         }
     }
 }
