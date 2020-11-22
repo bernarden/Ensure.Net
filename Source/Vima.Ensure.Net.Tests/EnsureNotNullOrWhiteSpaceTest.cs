@@ -31,7 +31,7 @@ namespace Vima.Ensure.Net.Tests
             Exception ex = Assert.Throws<ArgumentException>(() => Ensure.NotNullOrWhiteSpace(variableName, nameof(variableName)));
 
             // Assert
-            Assert.Equal($"{nameof(variableName)} cannot contain only white space characters.", ex.Message);
+            Assert.Equal($"{nameof(variableName)} cannot be an empty string.", ex.Message);
         }
 
         [Test]

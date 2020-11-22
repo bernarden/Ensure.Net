@@ -6,15 +6,17 @@ namespace Vima.Ensure.Net
     public static partial class Ensure
     {
         /// <summary>
-        /// Determine whether the string is null, if so throws an ArgumentNullException.
-        /// Determine whether the string contains only white space characters, if so throws an ArgumentException.
+        /// Checks whether <see cref="string"/> value is <see langword="null"/>, empty, or consists only of white-space characters.
         /// </summary>
-        /// <param name="value">The string variable to be checked.</param>
+        /// <param name="value">The value to check.</param>
         /// <param name="parameterName">The name of the parameter.</param>
-        public static IEnsurable<string> NotNullOrWhiteSpace([ValidatedNotNull] string value,
+        /// <exception cref="ArgumentNullException">Thrown when specified <paramref name="value"/> is <see langword="null"/>.</exception>
+        /// <exception cref="ArgumentException">Thrown when specified <paramref name="value"/> is empty.</exception>
+        public static IEnsurable<string> NotNullOrWhiteSpace(
+            [ValidatedNotNull] string value,
             string parameterName = null)
         {
-            CheckForNulls(value, parameterName);
+            ThrowExceptionIfStringIsNullOrEmpty(value, parameterName);
 
             foreach (char character in value)
             {

@@ -17,8 +17,8 @@ namespace Vima.Ensure.Net.Tests
             Exception ex2 = Assert.Throws<ArgumentException>(() => Ensure.NotDefault(variableName));
 
             // Assert
-            Assert.Equal($"{nameof(variableName)} cannot be set to default value.", ex1.Message);
-            Assert.Equal("Variable cannot be set to default value.", ex2.Message);
+            Assert.Equal($"{nameof(variableName)} cannot be set to the default value.", ex1.Message);
+            Assert.Equal("Variable cannot be set to the default value.", ex2.Message);
         }
 
         [Test]
@@ -31,7 +31,7 @@ namespace Vima.Ensure.Net.Tests
             Exception ex = Assert.Throws<ArgumentException>(() => Ensure.NotDefault(variableName, nameof(variableName)));
 
             // Assert
-            Assert.Equal($"{nameof(variableName)} cannot be set to default value.", ex.Message);
+            Assert.Equal($"{nameof(variableName)} cannot be set to the default value.", ex.Message);
         }
 
         [Test]

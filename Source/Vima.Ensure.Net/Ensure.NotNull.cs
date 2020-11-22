@@ -1,30 +1,35 @@
-﻿using Vima.Ensure.Net.Attributes;
+﻿using System;
+using Vima.Ensure.Net.Attributes;
 
 namespace Vima.Ensure.Net
 {
     public static partial class Ensure
     {
         /// <summary>
-        /// Determine whether the object is null, if so throws an ArgumentNullException.
+        /// Checks whether <typeparamref name="T"/> value is <see langword="null"/>.
         /// </summary>
-        /// <param name="value">The object to be checked.</param>
+        /// <param name="value">The value to check.</param>
         /// <param name="parameterName">The name of the parameter.</param>
+        /// <typeparam name="T">A reference type of a <paramref name="value"/> to check.</typeparam>
+        /// <exception cref="ArgumentNullException">Thrown when specified <paramref name="value"/> is <see langword="null"/>.</exception>
         public static IEnsurable<T> NotNull<T>([ValidatedNotNull] T value, string parameterName = null) where T : class
         {
-            CheckForNulls(value, parameterName);
+            ThrowExceptionIfNull(value, parameterName);
 
             return new Ensurable<T>(value);
         }
 
         /// <summary>
-        /// Determine whether the nullable struct is null, if so throws an ArgumentNullException.
+        /// Checks whether <typeparamref name="T"/> value is <see langword="null"/>.
         /// </summary>
-        /// <param name="value">The nullable struct to be checked.</param>
+        /// <param name="value">The value to check.</param>
         /// <param name="parameterName">The name of the parameter.</param>
+        /// <typeparam name="T">A structure type of a <paramref name="value"/> to check.</typeparam>
+        /// <exception cref="ArgumentNullException">Thrown when specified <paramref name="value"/> is <see langword="null"/>.</exception>
         public static IEnsurable<T> NotNull<T>([ValidatedNotNull] T? value, string parameterName = null)
             where T : struct
         {
-            CheckForNulls(value, parameterName);
+            ThrowExceptionIfNull(value, parameterName);
 
             return new Ensurable<T>(value.Value);
         }
