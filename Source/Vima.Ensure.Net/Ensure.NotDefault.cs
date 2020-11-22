@@ -12,7 +12,7 @@ namespace Vima.Ensure.Net
         /// <param name="value">The value to check.</param>
         /// <param name="parameterName">The name of the parameter.</param>
         /// <typeparam name="T">A type of a <paramref name="value"/> to check.</typeparam>
-        /// <exception cref="ArgumentException">Thrown when specified <paramref name="value"/> equals to a default value.</exception>
+        /// <exception cref="ArgumentException">Thrown when specified <paramref name="value"/> equals to the default value.</exception>
         public static IEnsurable<T> NotDefault<T>([ValidatedNotNull] T value, string parameterName = null)
         {
             if (EqualityComparer<T>.Default.Equals(value, default))
