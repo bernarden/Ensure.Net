@@ -7,7 +7,7 @@ namespace Vima.Ensure.Net
     public static partial class Ensure
     {
         /// <summary>
-        /// Checks whether <see cref="string"/> is <see langword="null"/> or empty.
+        /// Checks whether <see cref="string"/> value is <see langword="null"/> or empty.
         /// </summary>
         /// <param name="value">The value to check.</param>
         /// <param name="parameterName">The name of the parameter.</param>
@@ -23,7 +23,7 @@ namespace Vima.Ensure.Net
         }
 
         /// <summary>
-        /// Checks whether <typeparamref name="T"/> is <see langword="null"/> or empty.
+        /// Checks whether <typeparamref name="T"/> value is <see langword="null"/> or empty.
         /// </summary>
         /// <param name="value">The value to check.</param>
         /// <param name="parameterName">The name of the parameter.</param>

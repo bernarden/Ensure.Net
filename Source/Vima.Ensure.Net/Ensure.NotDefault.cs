@@ -7,7 +7,7 @@ namespace Vima.Ensure.Net
     public static partial class Ensure
     {
         /// <summary>
-        /// Checks whether <typeparamref name="T"/> has a default value.
+        /// Checks whether <typeparamref name="T"/> value is set to the default value.
         /// </summary>
         /// <param name="value">The value to check.</param>
         /// <param name="parameterName">The name of the parameter.</param>
@@ -24,7 +24,7 @@ namespace Vima.Ensure.Net
         }
 
         /// <summary>
-        /// Checks whether <typeparamref name="T"/>? has a default value.
+        /// Checks whether <typeparamref name="T"/>? value is <see langword="null"/>.
         /// </summary>
         /// <param name="value">The value to check.</param>
         /// <param name="parameterName">The name of the parameter.</param>
