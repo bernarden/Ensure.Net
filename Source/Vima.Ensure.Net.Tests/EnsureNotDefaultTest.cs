@@ -10,7 +10,7 @@ namespace Vima.Ensure.Net.Tests
         public void NotDefaultCheckShouldThrowArgumentExceptionIfStringVariableIsNull()
         {
             // Arrange
-            string variableName = null;
+            string? variableName = null;
 
             // Act
             Exception ex1 = Assert.Throws<ArgumentException>(() => Ensure.NotDefault(variableName, nameof(variableName)));
@@ -74,10 +74,10 @@ namespace Vima.Ensure.Net.Tests
         }
 
         [Test]
-        public void NotDefaultCheckShouldNotThrowExceptionIfNullableStructIsNotNull()
+        public void NotDefaultCheckShouldNotThrowExceptionIfNullableStructIsSetToDefaultValue()
         {
             // Arrange
-            Guid? variableName = Guid.NewGuid();
+            Guid? variableName = Guid.Empty;
 
             // Act
             IEnsurable<Guid> result = Ensure.NotDefault(variableName, nameof(variableName));

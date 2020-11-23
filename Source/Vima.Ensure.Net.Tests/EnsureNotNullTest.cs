@@ -10,7 +10,7 @@ namespace Vima.Ensure.Net.Tests
         public void NotNullCheckShouldThrowArgumentNullExceptionIfVariableIsNull()
         {
             // Arrange
-            string variableName = null;
+            string? variableName = null;
 
             // Act
             Exception ex1 = Assert.Throws<ArgumentNullException>(() => Ensure.NotNull(variableName, nameof(variableName)));

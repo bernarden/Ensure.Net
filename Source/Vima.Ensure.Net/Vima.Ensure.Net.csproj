@@ -16,13 +16,14 @@
     <PackageProjectUrl>https://github.com/bernarden/Ensure.Net</PackageProjectUrl>
     <Company>Vima</Company>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <Product>Ensure.Net</Product>
     <PackageId>Ensure.Net</PackageId>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="..\..\LICENSE" Pack="true" PackagePath="\" />
-    <None Include="..\..\Resources\NugetIcon.png" Pack="true" PackagePath="\$(PackageIcon)"/>
+    <None Include="..\..\Resources\NugetIcon.png" Pack="true" PackagePath="\$(PackageIcon)" />
   </ItemGroup>
 </Project>

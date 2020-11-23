@@ -14,12 +14,12 @@ namespace Vima.Ensure.Net
         /// <exception cref="ArgumentNullException">Thrown when specified <paramref name="value"/> is <see langword="null"/>.</exception>
         /// <exception cref="ArgumentException">Thrown when specified <paramref name="value"/> is empty.</exception>
         public static IEnsurable<string> NotNullOrEmpty(
-            [ValidatedNotNull] string value,
-            string parameterName = null)
+            [ValidatedNotNull] string? value,
+            string? parameterName = null)
         {
-            ThrowExceptionIfStringIsNullOrEmpty(value, parameterName);
+            string validatedValue = ThrowExceptionIfStringIsNullOrEmpty(value, parameterName);
 
-            return new Ensurable<string>(value);
+            return new Ensurable<string>(validatedValue);
         }
 
         /// <summary>
@@ -31,17 +31,17 @@ namespace Vima.Ensure.Net
         /// <exception cref="ArgumentNullException">Thrown when specified <paramref name="value"/> is <see langword="null"/>.</exception>
         /// <exception cref="ArgumentException">Thrown when specified <paramref name="value"/> is empty.</exception>
         public static IEnsurable<T> NotNullOrEmpty<T>(
-            [ValidatedNotNull] T value,
-            string parameterName = null) where T : IEnumerable
+            [ValidatedNotNull] T? value,
+            string? parameterName = null) where T : class, IEnumerable
         {
-            ThrowExceptionIfNull(value, parameterName);
+            T nonNullValue = ThrowExceptionIfNull(value, parameterName);
 
-            if (Extensions.IsEmpty(value))
+            if (Extensions.IsEmpty(nonNullValue))
             {
                 throw new ArgumentException($"{parameterName ?? DefaultParameterName} cannot be empty.");
             }
 
-            return new Ensurable<T>(value);
+            return new Ensurable<T>(nonNullValue);
         }
     }
 }

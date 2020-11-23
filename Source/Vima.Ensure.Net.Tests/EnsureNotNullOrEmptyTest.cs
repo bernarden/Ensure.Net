@@ -1,21 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using Vima.Ensure.Net.Tests.Helpers;
 
 namespace Vima.Ensure.Net.Tests
 {
     [TestFixture]
-    [SuppressMessage("ReSharper", "ExpressionIsAlwaysNull")]
-    [SuppressMessage("ReSharper", "RedundantArgumentDefaultValue")]
     public class EnsureNotNullOrEmptyTest
     {
         [Test]
         public void NotNullOrEmptyCheckShouldThrowArgumentNullExceptionIfVariableIsNull()
         {
             // Arrange
-            string variableName = null;
+            string? variableName = null;
 
             // Act
             Exception ex1 = Assert.Throws<ArgumentNullException>(() => Ensure.NotNullOrEmpty(variableName, nameof(variableName)));
@@ -159,7 +156,7 @@ namespace Vima.Ensure.Net.Tests
         public void NotNullOrEmptyListCheckShouldThrowArgumentNullExceptionIfVariableIsNull()
         {
             // Arrange
-            List<string> variableName = null;
+            List<string>? variableName = null;
 
             // Act
             Exception ex = Assert.Throws<ArgumentNullException>(() => Ensure.NotNullOrEmpty(variableName, nameof(variableName)));
@@ -185,7 +182,7 @@ namespace Vima.Ensure.Net.Tests
         public void NotNullOrEmptyListCheckShouldThrowArgumentNullExceptionWithCorrectMessageIfVariableNameIsNull()
         {
             // Act
-            Exception ex = Assert.Throws<ArgumentNullException>(() => Ensure.NotNullOrEmpty(null, null));
+            Exception ex = Assert.Throws<ArgumentNullException>(() => Ensure.NotNullOrEmpty(null));
 
             // Assert
             Assert.Equal("Variable cannot be null.", ex.Message);

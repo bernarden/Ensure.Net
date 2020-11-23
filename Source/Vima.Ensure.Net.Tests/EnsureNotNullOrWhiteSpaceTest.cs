@@ -10,7 +10,7 @@ namespace Vima.Ensure.Net.Tests
         public void NotNullOrWhiteSpaceShouldThrowArgumentNullExceptionIfVariableIsNull()
         {
             // Arrange
-            string variableName = null;
+            string? variableName = null;
 
             // Act
             Exception ex1 = Assert.Throws<ArgumentNullException>(() => Ensure.NotNullOrWhiteSpace(variableName, nameof(variableName)));
@@ -77,7 +77,7 @@ namespace Vima.Ensure.Net.Tests
         public void NotNullOrWhiteSpaceListCheckShouldThrowArgumentNullExceptionWithCorrectMessageIfVariableNameIsNull()
         {
             // Act
-            Exception ex = Assert.Throws<ArgumentNullException>(() => Ensure.NotNullOrWhiteSpace(null, null));
+            Exception ex = Assert.Throws<ArgumentNullException>(() => Ensure.NotNullOrWhiteSpace(null));
 
             // Assert
             Assert.Equal("Variable cannot be null.", ex.Message);

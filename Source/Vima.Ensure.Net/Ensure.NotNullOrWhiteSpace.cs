@@ -13,15 +13,15 @@ namespace Vima.Ensure.Net
         /// <exception cref="ArgumentNullException">Thrown when specified <paramref name="value"/> is <see langword="null"/>.</exception>
         /// <exception cref="ArgumentException">Thrown when specified <paramref name="value"/> is empty.</exception>
         public static IEnsurable<string> NotNullOrWhiteSpace(
-            [ValidatedNotNull] string value,
-            string parameterName = null)
+            [ValidatedNotNull] string? value,
+            string? parameterName = null)
         {
-            ThrowExceptionIfStringIsNullOrEmpty(value, parameterName);
+            string nonNullValue = ThrowExceptionIfStringIsNullOrEmpty(value, parameterName);
 
-            foreach (char character in value)
+            foreach (var character in nonNullValue)
             {
                 if (!char.IsWhiteSpace(character))
-                    return new Ensurable<string>(value);
+                    return new Ensurable<string>(nonNullValue);
             }
 
             throw new ArgumentException(
