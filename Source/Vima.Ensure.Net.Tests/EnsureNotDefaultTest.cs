@@ -74,10 +74,10 @@ namespace Vima.Ensure.Net.Tests
         }
 
         [Test]
-        public void NotDefaultCheckShouldNotThrowExceptionIfNullableStructIsNotNull()
+        public void NotDefaultCheckShouldNotThrowExceptionIfNullableStructIsSetToDefaultValue()
         {
             // Arrange
-            Guid? variableName = Guid.NewGuid();
+            Guid? variableName = Guid.Empty;
 
             // Act
             IEnsurable<Guid> result = Ensure.NotDefault(variableName, nameof(variableName));
