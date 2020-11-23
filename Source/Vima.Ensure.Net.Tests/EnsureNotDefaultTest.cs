@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Vima.Ensure.Net.Tests.Helpers;
 
 namespace Vima.Ensure.Net.Tests
@@ -55,6 +56,20 @@ namespace Vima.Ensure.Net.Tests
 
             // Act
             IEnsurable<string> result = Ensure.NotDefault(variableName, nameof(variableName));
+
+            // Assert
+            Assert.Equal(result.Value, variableName);
+        }
+
+        [Test]
+        public void NotDefaultCheckShouldReturnNonNullableTypeBackWhenNullableReferenceTypeIsSpecified()
+        {
+            // Arrange
+            // ReSharper disable once VariableCanBeNotNullable
+            Queue<string>? variableName = new Queue<string>();
+
+            // Act
+            IEnsurable<Queue<string>> result = Ensure.NotDefault(variableName, nameof(variableName));
 
             // Assert
             Assert.Equal(result.Value, variableName);
