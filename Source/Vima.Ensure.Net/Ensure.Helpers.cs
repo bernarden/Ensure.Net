@@ -6,23 +6,29 @@ namespace Vima.Ensure.Net
     {
         private const string DefaultParameterName = "Variable";
 
-        private static void ThrowExceptionIfNull<T>(T value, string parameterName)
+        private static string GenerateNullErrorMessage(string? parameterName) =>
+            $"{parameterName ?? DefaultParameterName} cannot be null.";
+
+        private static T ThrowExceptionIfNull<T>(T? value, string? parameterName) where T: class
         {
-            if (value == null)
-            {
-                throw new ArgumentNullException("", $"{parameterName ?? DefaultParameterName} cannot be null.");
-            }
+            return value ?? throw new ArgumentNullException("", GenerateNullErrorMessage(parameterName));
         }
 
-        private static void ThrowExceptionIfStringIsNullOrEmpty(string value, string parameterName)
+        private static T ThrowExceptionIfNull<T>(T? value, string? parameterName) where T : struct
         {
-            ThrowExceptionIfNull(value, parameterName);
+            return value ?? throw new ArgumentNullException("", GenerateNullErrorMessage(parameterName));
+        }
 
-            if (value.Equals(string.Empty))
+        private static string ThrowExceptionIfStringIsNullOrEmpty(string? value, string? parameterName)
+        {
+            string nonNullValue = ThrowExceptionIfNull(value, parameterName);
+
+            if (nonNullValue.Equals(string.Empty))
             {
                 throw new ArgumentException($"{parameterName ?? DefaultParameterName} cannot be an empty string.");
             }
-        }
 
+            return nonNullValue;
+        }
     }
 }

@@ -58,13 +58,13 @@ namespace Vima.Ensure.Net.Tests
 
             // Act
             bool next = enumerator.MoveNext();
-            long firstCurrent = (long) enumerator.Current;
+            long? firstCurrent = (long?) enumerator.Current;
             enumerator.Reset();
             long secondCurrent = ((IEnumerator<long>) enumerator).Current;
 
             // Assert
             Assert.Equal(next, true);
-            Assert.Equal(firstCurrent, 1L);
+            Assert.Equal(firstCurrent.GetValueOrDefault(), 1L);
             Assert.Equal(secondCurrent, 0L);
         }
     }

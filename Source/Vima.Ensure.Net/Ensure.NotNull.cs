@@ -12,11 +12,11 @@ namespace Vima.Ensure.Net
         /// <param name="parameterName">The name of the parameter.</param>
         /// <typeparam name="T">A reference type of a <paramref name="value"/> to check.</typeparam>
         /// <exception cref="ArgumentNullException">Thrown when specified <paramref name="value"/> is <see langword="null"/>.</exception>
-        public static IEnsurable<T> NotNull<T>([ValidatedNotNull] T value, string parameterName = null) where T : class
+        public static IEnsurable<T> NotNull<T>([ValidatedNotNull] T? value, string? parameterName = null) where T : class
         {
-            ThrowExceptionIfNull(value, parameterName);
+            T nonNullValue = ThrowExceptionIfNull(value, parameterName);
 
-            return new Ensurable<T>(value);
+            return new Ensurable<T>(nonNullValue);
         }
 
         /// <summary>
@@ -26,12 +26,12 @@ namespace Vima.Ensure.Net
         /// <param name="parameterName">The name of the parameter.</param>
         /// <typeparam name="T">A structure type of a <paramref name="value"/> to check.</typeparam>
         /// <exception cref="ArgumentNullException">Thrown when specified <paramref name="value"/> is <see langword="null"/>.</exception>
-        public static IEnsurable<T> NotNull<T>([ValidatedNotNull] T? value, string parameterName = null)
+        public static IEnsurable<T> NotNull<T>([ValidatedNotNull] T? value, string? parameterName = null)
             where T : struct
         {
-            ThrowExceptionIfNull(value, parameterName);
+            T nonNullValue = ThrowExceptionIfNull(value, parameterName);
 
-            return new Ensurable<T>(value.Value);
+            return new Ensurable<T>(nonNullValue);
         }
     }
 }
