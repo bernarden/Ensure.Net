@@ -1,7 +1,6 @@
-﻿namespace Vima.Ensure.Net
+﻿namespace Vima.Ensure.Net;
+
+public interface IEnsurable<T>
 {
-    public interface IEnsurable<T>
-    {
-        T Value { get; set; }
-    }
+    T Value { get; set; }
 }

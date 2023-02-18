@@ -1,6 +1,6 @@
 # Ensure.Net
 
-[![Build status](https://ci.appveyor.com/api/projects/status/9rx1gvvt6bxv6jw7/branch/master?svg=true)](https://ci.appveyor.com/project/bernarden/ensure-net/branch/master)
+[![Build status](https://github.com/bernarden/Ensure.Net/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/bernarden/Ensure.Net/actions/workflows/build.yml)
 [![NuGet](https://img.shields.io/nuget/v/Ensure.Net.svg)](https://www.nuget.org/packages/Ensure.Net/)
 
 Ensure.Net is a simple yet functional argument validation library.

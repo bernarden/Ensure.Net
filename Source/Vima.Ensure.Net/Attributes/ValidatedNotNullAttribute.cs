@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace Vima.Ensure.Net.Attributes
+namespace Vima.Ensure.Net.Attributes;
+
+[AttributeUsage(AttributeTargets.Parameter)]
+internal sealed class ValidatedNotNullAttribute : Attribute
 {
-    [AttributeUsage(AttributeTargets.Parameter)]
-    internal sealed class ValidatedNotNullAttribute : Attribute
-    {
-    }
 }

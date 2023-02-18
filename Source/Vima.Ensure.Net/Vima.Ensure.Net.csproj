@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net35;net452;netstandard1.0;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <Version>2.4.0</Version>
     <FileVersion>2.4.0</FileVersion>
     <Authors>Victor Usoltsev</Authors>
@@ -18,6 +18,8 @@
     <NeutralLanguage>en-US</NeutralLanguage>
     <Product>Ensure.Net</Product>
     <PackageId>Ensure.Net</PackageId>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -25,5 +27,9 @@
   <ItemGroup>
     <None Include="..\..\LICENSE" Pack="true" PackagePath="\" />
     <None Include="..\..\Resources\NugetIcon.png" Pack="true" PackagePath="\$(PackageIcon)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Vima.Ensure.Net.Tests" />
   </ItemGroup>
 </Project>
