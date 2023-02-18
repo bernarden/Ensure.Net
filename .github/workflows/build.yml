@@ -1,0 +1,34 @@
+name: .NET
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.0.x
+
+    - name: Restore dependencies
+      run: dotnet restore 
+      working-directory: ./Source
+
+    - name: Build
+      run: dotnet build -c Release -warnaserror --no-restore
+      working-directory: ./Source
+
+    - name: Test
+      run: dotnet test -c Release --no-restore --no-build 
+      working-directory: ./Source
+    
+    - name: Pack
+      run: dotnet pack -c Release --no-restore --no-build 
+      working-directory: ./Source

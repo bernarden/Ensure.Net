@@ -1,124 +1,122 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Vima.Ensure.Net.Tests.Helpers;
+using Xunit;
 
-namespace Vima.Ensure.Net.Tests
+namespace Vima.Ensure.Net.Tests;
+
+public class ExtensionsTest
 {
-    [TestFixture]
-    public class ExtensionsTest
+    [Fact]
+    public void IsEmptyShouldBeAbleToHandleCollection()
     {
-        [Test]
-        public void IsEmptyShouldBeAbleToHandleCollection()
-        {
-            // Arrange
-            Collection<long> collection = new Collection<long> {1};
+        // Arrange
+        Collection<long> collection = new Collection<long> {1};
 
-            // Act
-            bool isEmpty = Extensions.IsEmpty(collection);
+        // Act
+        bool isEmpty = Extensions.IsEmpty(collection);
 
-            // Assert
-            Assert.Equal(isEmpty, false);
-        }
-
-        [Test]
-        public void IsEmptyShouldBeAbleToHandleFilledNonCollectionEnumerables()
-        {
-            // Arrange
-            long expectedCount = 5;
-            IEnumerable enumerable = new CustomEnumerable<long>(expectedCount);
-
-            // Act
-            bool isEmpty = Extensions.IsEmpty(enumerable);
-
-            // Assert
-            Assert.Equal(isEmpty, false);
-        }
-
-        [Test]
-        public void IsEmptyShouldBeAbleToHandleEmptyNonCollectionEnumerables()
-        {
-            // Arrange
-            IEnumerable enumerable = new CustomEnumerable<long>();
-
-            // Act
-            bool isEmpty = Extensions.IsEmpty(enumerable);
-
-            // Assert
-            Assert.Equal(isEmpty, true);
-        }
-
-        [Test]
-        public void CustomEnumerableAndCustomEnumeratorTest()
-        {
-            // Arrange
-            long expectedCount = 15;
-            CustomEnumerable<long> enumerable = new CustomEnumerable<long>(expectedCount);
-            IEnumerator enumerator = ((IEnumerable) enumerable).GetEnumerator();
-
-            // Act
-            bool next = enumerator.MoveNext();
-            long? firstCurrent = (long?) enumerator.Current;
-            enumerator.Reset();
-            long secondCurrent = ((IEnumerator<long>) enumerator).Current;
-
-            // Assert
-            Assert.Equal(next, true);
-            Assert.Equal(firstCurrent.GetValueOrDefault(), 1L);
-            Assert.Equal(secondCurrent, 0L);
-        }
+        // Assert
+        Assert.False(isEmpty);
     }
 
-    internal class CustomEnumerable<T> : IEnumerable<T>
+    [Fact]
+    public void IsEmptyShouldBeAbleToHandleFilledNonCollectionEnumerables()
     {
-        private readonly long _numberOfStates;
+        // Arrange
+        long expectedCount = 5;
+        IEnumerable enumerable = new CustomEnumerable<long>(expectedCount);
 
-        public CustomEnumerable(long numberOfStates = 0)
-        {
-            _numberOfStates = numberOfStates;
-        }
+        // Act
+        bool isEmpty = Extensions.IsEmpty(enumerable);
 
-        public IEnumerator<T> GetEnumerator()
-        {
-            return new CustomEnumerator<T>(_numberOfStates);
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        // Assert
+        Assert.False(isEmpty);
     }
 
-    internal class CustomEnumerator<T> : IEnumerator<T>
+    [Fact]
+    public void IsEmptyShouldBeAbleToHandleEmptyNonCollectionEnumerables()
     {
-        private readonly long _numberOfStates;
-        private long _indexOfCurrentState;
+        // Arrange
+        IEnumerable enumerable = new CustomEnumerable<long>();
 
-        public CustomEnumerator(long i)
-        {
-            _numberOfStates = i;
-        }
+        // Act
+        bool isEmpty = Extensions.IsEmpty(enumerable);
 
-        public bool MoveNext()
-        {
-            if (_indexOfCurrentState >= _numberOfStates)
-                return false;
+        // Assert
+        Assert.True(isEmpty);
+    }
 
-            _indexOfCurrentState++;
-            return true;
-        }
+    [Fact]
+    public void CustomEnumerableAndCustomEnumeratorTest()
+    {
+        // Arrange
+        long expectedCount = 15;
+        CustomEnumerable<long> enumerable = new CustomEnumerable<long>(expectedCount);
+        IEnumerator enumerator = ((IEnumerable) enumerable).GetEnumerator();
 
-        public void Reset()
-        {
-            _indexOfCurrentState = 0;
-        }
+        // Act
+        bool next = enumerator.MoveNext();
+        long? firstCurrent = (long?) enumerator.Current;
+        enumerator.Reset();
+        long secondCurrent = ((IEnumerator<long>) enumerator).Current;
 
-        T IEnumerator<T>.Current => (T) Current;
+        // Assert
+        Assert.True(next);
+        Assert.Equal(1L, firstCurrent.GetValueOrDefault());
+        Assert.Equal(0L, secondCurrent);
+    }
+}
 
-        public object Current => _indexOfCurrentState;
+internal class CustomEnumerable<T> : IEnumerable<T>
+{
+    private readonly long _numberOfStates;
 
-        public void Dispose()
-        {
-        }
+    public CustomEnumerable(long numberOfStates = 0)
+    {
+        _numberOfStates = numberOfStates;
+    }
+
+    public IEnumerator<T> GetEnumerator()
+    {
+        return new CustomEnumerator<T>(_numberOfStates);
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
+}
+
+internal class CustomEnumerator<T> : IEnumerator<T>
+{
+    private readonly long _numberOfStates;
+    private long _indexOfCurrentState;
+
+    public CustomEnumerator(long i)
+    {
+        _numberOfStates = i;
+    }
+
+    public bool MoveNext()
+    {
+        if (_indexOfCurrentState >= _numberOfStates)
+            return false;
+
+        _indexOfCurrentState++;
+        return true;
+    }
+
+    public void Reset()
+    {
+        _indexOfCurrentState = 0;
+    }
+
+    T IEnumerator<T>.Current => (T) Current;
+
+    public object Current => _indexOfCurrentState;
+
+    public void Dispose()
+    {
     }
 }

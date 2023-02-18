@@ -1,86 +1,84 @@
 using System;
-using Vima.Ensure.Net.Tests.Helpers;
+using Xunit;
 
-namespace Vima.Ensure.Net.Tests
+namespace Vima.Ensure.Net.Tests;
+
+public class EnsureNotNullOrWhiteSpaceTest
 {
-    [TestFixture]
-    public class EnsureNotNullOrWhiteSpaceTest
+    [Fact]
+    public void NotNullOrWhiteSpaceShouldThrowArgumentNullExceptionIfVariableIsNull()
     {
-        [Test]
-        public void NotNullOrWhiteSpaceShouldThrowArgumentNullExceptionIfVariableIsNull()
-        {
-            // Arrange
-            string? variableName = null;
+        // Arrange
+        string? variableName = null;
 
-            // Act
-            Exception ex1 = Assert.Throws<ArgumentNullException>(() => Ensure.NotNullOrWhiteSpace(variableName, nameof(variableName)));
-            Exception ex2 = Assert.Throws<ArgumentNullException>(() => Ensure.NotNullOrWhiteSpace(variableName));
+        // Act
+        Exception ex1 = Assert.Throws<ArgumentNullException>(() => Ensure.NotNullOrWhiteSpace(variableName, nameof(variableName)));
+        Exception ex2 = Assert.Throws<ArgumentNullException>(() => Ensure.NotNullOrWhiteSpace(variableName));
 
-            // Assert
-            Assert.Equal($"{nameof(variableName)} cannot be null.", ex1.Message);
-            Assert.Equal("Variable cannot be null.", ex2.Message);
-        }
+        // Assert
+        Assert.Equal($"{nameof(variableName)} cannot be null.", ex1.Message);
+        Assert.Equal("Variable cannot be null.", ex2.Message);
+    }
 
-        [Test]
-        public void NotNullOrWhiteSpaceCheckShouldThrowArgumentExceptionIfVariableIsEmptyString()
-        {
-            // Arrange
-            string variableName = "";
+    [Fact]
+    public void NotNullOrWhiteSpaceCheckShouldThrowArgumentExceptionIfVariableIsEmptyString()
+    {
+        // Arrange
+        string variableName = "";
 
-            // Act
-            Exception ex = Assert.Throws<ArgumentException>(() => Ensure.NotNullOrWhiteSpace(variableName, nameof(variableName)));
+        // Act
+        Exception ex = Assert.Throws<ArgumentException>(() => Ensure.NotNullOrWhiteSpace(variableName, nameof(variableName)));
 
-            // Assert
-            Assert.Equal($"{nameof(variableName)} cannot be an empty string.", ex.Message);
-        }
+        // Assert
+        Assert.Equal($"{nameof(variableName)} cannot be an empty string.", ex.Message);
+    }
 
-        [Test]
-        public void NotNullOrWhiteSpaceCheckShouldNotThrowExceptionIfVariableIsNotNullOrContainsWhiteSpaceCharacters()
-        {
-            // Arrange
-            string variableName = "Test";
+    [Fact]
+    public void NotNullOrWhiteSpaceCheckShouldNotThrowExceptionIfVariableIsNotNullOrContainsWhiteSpaceCharacters()
+    {
+        // Arrange
+        string variableName = "Test";
 
-            // Act
-            IEnsurable<string> result = Ensure.NotNullOrWhiteSpace(variableName, nameof(variableName));
+        // Act
+        IEnsurable<string> result = Ensure.NotNullOrWhiteSpace(variableName, nameof(variableName));
 
-            // Assert
-            Assert.Equal(result.Value, variableName);
-        }
+        // Assert
+        Assert.Equal(variableName, result.Value);
+    }
 
-        [Test]
-        public void NotNullOrWhiteSpaceCheckShouldNotThrowExceptionIfVariableStartsAndEndsWithWhiteSpaceCharacters()
-        {
-            // Arrange
-            string variableName = " . ";
+    [Fact]
+    public void NotNullOrWhiteSpaceCheckShouldNotThrowExceptionIfVariableStartsAndEndsWithWhiteSpaceCharacters()
+    {
+        // Arrange
+        string variableName = " . ";
 
-            // Act
-            IEnsurable<string> result = Ensure.NotNullOrWhiteSpace(variableName, nameof(variableName));
+        // Act
+        IEnsurable<string> result = Ensure.NotNullOrWhiteSpace(variableName, nameof(variableName));
 
-            // Assert
-            Assert.Equal(result.Value, variableName);
-        }
+        // Assert
+        Assert.Equal(variableName, result.Value);
+    }
 
-        [Test]
-        public void NotNullOrWhiteSpaceCheckShouldThrowArgumentExceptionIfVariableContainsOnlyWhiteSpaceCharacters()
-        {
-            // Arrange
-            string variableName = "  ";
+    [Fact]
+    public void NotNullOrWhiteSpaceCheckShouldThrowArgumentExceptionIfVariableContainsOnlyWhiteSpaceCharacters()
+    {
+        // Arrange
+        string variableName = "  ";
 
-            // Act
-            Exception ex = Assert.Throws<ArgumentException>(() => Ensure.NotNullOrWhiteSpace(variableName, nameof(variableName)));
+        // Act
+        Exception ex = Assert.Throws<ArgumentException>(() => Ensure.NotNullOrWhiteSpace(variableName, nameof(variableName)));
 
-            // Assert
-            Assert.Equal($"{nameof(variableName)} cannot contain only white space characters.", ex.Message);
-        }
+        // Assert
+        Assert.Equal($"{nameof(variableName)} cannot contain only white space characters.", ex.Message);
+    }
 
-        [Test]
-        public void NotNullOrWhiteSpaceListCheckShouldThrowArgumentNullExceptionWithCorrectMessageIfVariableNameIsNull()
-        {
-            // Act
-            Exception ex = Assert.Throws<ArgumentNullException>(() => Ensure.NotNullOrWhiteSpace(null));
+    [Fact]
+    public void NotNullOrWhiteSpaceListCheckShouldThrowArgumentNullExceptionWithCorrectMessageIfVariableNameIsNull()
+    {
+        // Act
+        Exception ex = Assert.Throws<ArgumentNullException>(() => Ensure.NotNullOrWhiteSpace(null));
 
-            // Assert
-            Assert.Equal("Variable cannot be null.", ex.Message);
-        }
+        // Assert
+        Assert.Equal("Variable cannot be null.", ex.Message);
     }
 }
